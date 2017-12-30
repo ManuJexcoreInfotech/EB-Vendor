@@ -1,0 +1,42 @@
+<ion-header no-border>
+  <ion-navbar color="header">
+    <button ion-button menuToggle>
+      <ion-icon name="menu">
+      </ion-icon>
+    </button>
+    <ion-title text-center>{{"Edit Profile" | translate}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="edit-address-form"> 
+	<form [formGroup]="myForm" ng-init="">
+	<div>
+    <ion-list>     
+      <ion-item>  
+        <ion-label floating>{{"First Name" | translate}}
+        </ion-label>
+        <ion-input required type="text" formControlName="firstName" [(ngModel)]="editAddress.first_name" name="first_name">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>{{"Last Name"| translate}}
+        </ion-label>
+        <ion-input required type="text" formControlName="lastName" [(ngModel)]="editAddress.last_name" name="last_name">
+        </ion-input>
+      </ion-item>         
+      <ion-item>
+        <ion-label floating>{{"Email" | translate}}
+        </ion-label>
+        <ion-input required type="email" formControlName="email" [(ngModel)]="editAddress.email" name="email">
+        </ion-input>
+      </ion-item>
+      
+    </ion-list>
+  </div>
+  
+  <div class="margin">
+    <button ion-button block color="button-color" type="submit"  [disabled]="!myForm.valid" class="button button-block button-default" text-uppercase (click)="updateProfile()" >{{Save | translate}}
+    </button>
+  </div>  
+  </form>
+</ion-content>

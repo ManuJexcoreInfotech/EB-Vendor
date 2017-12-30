@@ -1,0 +1,61 @@
+<ion-header no-border>
+  <ion-navbar color="header">
+    <button ion-button menuToggle>
+      <ion-icon name="menu">
+      </ion-icon>
+    </button>
+    <ion-title text-center>Add New Product
+    </ion-title>
+	<ion-buttons end>
+      <button ion-button icon-only light class="has-icon icon-only has-badge" style="min-width: 6vw;">   
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="edit-address-form">
+	<div>
+    <ion-list>     
+		<ion-item>
+			<ion-label floating>{{"Product Name" | translate}}
+			</ion-label>
+			<ion-input required type="text" [(ngModel)]="editAddress.old_password" name="title">
+			</ion-input>
+		</ion-item>
+		<ion-item>
+		  <ion-label>Type</ion-label>
+		  <ion-select [(ngModel)]="type">
+			<ion-option>Simple</ion-option>
+			<ion-option>Feature</ion-option>
+		  </ion-select>
+		</ion-item>
+		<ion-item>
+			<ion-label floating>{{"Product Price" | translate}}
+			</ion-label>
+			<ion-input required type="text" [(ngModel)]="editAddress.old_password" name="price">
+			</ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label floating>{{"Description" | translate}}
+			</ion-label>
+			<ion-textarea #ionTxtArea placeholder='{{placeholder}}' [(ngModel)]="description" (ngModelChange)='onChange($event)'></ion-textarea>
+		</ion-item>
+		<ion-item>
+		  <ion-label>Category</ion-label>
+		  <ion-select [(ngModel)]="category" multiple="true"> 
+			<ion-option *ngFor="let item of categories" >{{item.name}}</ion-option>
+			<ion-option>Black Olives</ion-option>
+			<ion-option>Extra Cheese</ion-option>
+			<ion-option>Mushrooms</ion-option>
+			<ion-option>Pepperoni</ion-option>
+			<ion-option>Sausage</ion-option>
+		  </ion-select>
+		</ion-item>
+		
+      
+    </ion-list>
+	</div> 
+	<div class="margin">
+		<button ion-button block color="button-color" type="submit" [disabled]="disableSubmit" class="button button-block button-default" text-uppercase (click)="saveAddress()">{{Save | translate}}
+		</button>
+	</div>
+	</ion-content>
