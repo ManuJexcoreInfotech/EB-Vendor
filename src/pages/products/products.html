@@ -38,7 +38,7 @@
                   <div class="product-name-top">                                 
                   <div class="product-label">
                   <div tappable (click)="getProduct(item.id)" class="max-lines">
-                      <h2 *ngIf="item.title">{{item.title}}
+                      <h2 *ngIf="item.title">{{item.id}}-{{item.title}} 
                       </h2>
                       <h2 *ngIf="item.name">{{item.name}}
                       </h2>
@@ -80,8 +80,8 @@
                   </ion-card-content>
 
                   <div tappable (click)="getProduct(item.id)" class="card-name">
-                  <ion-label *ngIf="item.title">{{item.title}}
-                  </ion-label>
+                  <ion-label *ngIf="item.title">{{item.id}}-{{item.title}}
+                  </ion-label> 
                   <ion-label *ngIf="item.name">{{item.name}}
                   </ion-label>
                   </div>
@@ -96,18 +96,27 @@
                     </span>
 
                   </ion-label>
+				  <ion-label>
+                    <ion-row>
+						<ion-col width-50 class="col1">
+							<button ion-button icon-only round (click)="editProduct(item.id)" color="secondary" style="height:2.8em">
+								<ion-icon name="create-outline"></ion-icon>
+							</button>
+						</ion-col>
+						<ion-col width-50>
+							<button ion-button icon-only round  (click)="deleteProduct(item.id)" color="danger" style="height:2.8em">
+								<ion-icon name="trash-outline"></ion-icon>
+							</button>
+						</ion-col>
+					</ion-row>
+                  </ion-label>
                 </ion-card>
               </ion-col>
             </ion-row>
           </div>
         </div>
       </div>
-      <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items">
-			<ion-infinite-scroll-content
-			 loadingSpinner="crescent"
-			 loadingText={{values.lan.GettingMoreElements}}>
-			</ion-infinite-scroll-content>
-      </ion-infinite-scroll>
+     
     </div>
   
 </ion-content>

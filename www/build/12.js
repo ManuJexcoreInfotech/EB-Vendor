@@ -1,14 +1,14 @@
 webpackJsonp([12],{
 
-/***/ 694:
+/***/ 697:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AccountLoginModule", function() { return AccountLoginModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderDetailsModule", function() { return OrderDetailsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(713);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__order_details__ = __webpack_require__(717);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -20,41 +20,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AccountLoginModule = (function () {
-    function AccountLoginModule() {
+var OrderDetailsModule = (function () {
+    function OrderDetailsModule() {
     }
-    AccountLoginModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+    OrderDetailsModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__login__["a" /* AccountLogin */],
+                __WEBPACK_IMPORTED_MODULE_2__order_details__["a" /* OrderDetails */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* AccountLogin */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__order_details__["a" /* OrderDetails */]),
                 __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */].forChild()
             ],
             exports: [
-                __WEBPACK_IMPORTED_MODULE_2__login__["a" /* AccountLogin */]
+                __WEBPACK_IMPORTED_MODULE_2__order_details__["a" /* OrderDetails */]
             ]
         })
-    ], AccountLoginModule);
-    return AccountLoginModule;
+    ], OrderDetailsModule);
+    return OrderDetailsModule;
 }());
 
-//# sourceMappingURL=login.module.js.map
+//# sourceMappingURL=order-details.module.js.map
 
 /***/ }),
 
-/***/ 713:
+/***/ 717:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountLogin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDetails; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_functions__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_values__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(23);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -68,80 +66,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-var AccountLogin = (function () {
-    function AccountLogin(nav, service, functions, Loading, values) {
+var OrderDetails = (function () {
+    function OrderDetails(nav, service, params, values) {
         var _this = this;
         this.nav = nav;
         this.service = service;
-        this.functions = functions;
-        this.Loading = Loading;
         this.values = values;
-        this.disableSubmit = false;
-        this.loginData = [];
-        this.LogIn = "LogIn";
-        this.service.getNonce()
-            .then(function (results) { return _this.nonce = results; });
+        this.id = params.data;
+        this.service.getOrder(this.id)
+            .then(function (results) { return _this.orderDetails = results; });
     }
-    AccountLogin.prototype.login = function (a) {
-        var _this = this;
-        if (this.validateForm()) {
-            this.disableSubmit = true;
-            this.LogIn = "Logging In";
-            this.service.login(a, this.nonce.checkout_login)
-                .then(function (results) { return _this.handleResults(results); });
-        }
-    };
-    AccountLogin.prototype.validateForm = function () {
-        if (this.loginData.username == undefined || this.loginData.username == "") {
-            return false;
-        }
-        if (this.loginData.password == undefined || this.loginData.password == "") {
-            return false;
-        }
-        else {
-            return true;
-        }
-    };
-    AccountLogin.prototype.handleResults = function (results) {
-        var _this = this;
-        this.disableSubmit = false;
-        this.LogIn = "LogIn";
-        console.log(results);
-        if (!results.errors) {
-            if (!this.values.isVendor) {
-                this.functions.showAlert('error', 'only vendor user can allow to login here.');
-                this.service.logout();
-                this.loading = this.Loading.create();
-                this.loading.present();
-                setTimeout(function () {
-                    _this.loading.dismiss();
-                    _this.nav.setRoot("AccountLogin");
-                }, 2000);
-            }
-            this.functions.showAlert('success', 'You have successfully logged in');
-            this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_5__home_home__["a" /* Home */]);
-        }
-        else if (results.errors) {
-            this.functions.showAlert('error', 'invalid username/password');
-        }
-    };
-    AccountLogin.prototype.forgotten = function (loginData) {
-        this.nav.push('AccountForgotten');
-    };
-    AccountLogin.prototype.signup = function () {
-        this.nav.push('AccountRegister');
-    };
-    AccountLogin = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\xampp\htdocs\ionic\boomDome\src\pages\account\login\login.html"*/'<ion-header no-border class="login-header">\n\n  <ion-navbar>\n\n    <button ion-button menuToggle *ngIf="values.isLoggedIn">\n\n		<ion-icon name="menu">  \n\n		</ion-icon>\n\n    </button>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="account-login">\n\n    <div>\n\n      <img src="assets/image/menu-logo.png">\n\n    </div>\n\n\n\n  <div class="margin">\n\n    <form #f="ngForm" class="login">\n\n      <ion-list>\n\n\n\n        <ion-item>\n\n          <ion-input required type="email" [(ngModel)]="loginData.username" name="firstname" placeholder="{{\'Username\' | translate}}">\n\n          </ion-input><ion-icon name="md-mail" item-left></ion-icon>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-input required type="password" [(ngModel)]="loginData.password" name="password" placeholder="{{\'Password\' | translate}}">\n\n          </ion-input><ion-icon name="md-key" item-left></ion-icon>\n\n        </ion-item>\n\n\n\n        <h2 tappable (click)="forgotten(loginData)">{{"Forgot Password" | translate}}?</h2>\n\n\n\n      </ion-list>\n\n\n\n      <button ion-button block color="button-color" type="submit" class="button button-block button-default" text-uppercase [disabled]="disableSubmit" (click)="login(loginData)">{{LogIn | translate}}\n\n      </button>\n\n\n\n\n\n\n\n  <ion-row style="margin-top:16px">\n\n    <!-- <ion-col>\n\n            <button ion-button block style="background-color: #3B5998; color: #fff" type="submit" class="button button-block button-default" text-uppercase [disabled]="disableSubmit" (click)="facebookLogin()">\n\n            <ion-icon item-left style="color:#fff; padding-right: 5px;" ios="logo-facebook" md="logo-facebook"></ion-icon>\n\n             Facebook\n\n        </button>\n\n\n\n    </ion-col>\n\n    <ion-col>\n\n            <button ion-button block style="background-color: #d34836; color: #fff" type="submit" class="button button-block button-default" text-uppercase [disabled]="disableSubmit" (click)="gmailLogin()">\n\n            <ion-icon style="color:#fff; padding-right: 5px;" ios="logo-google" md="logo-google"></ion-icon>\n\n             Google\n\n        </button>\n\n\n\n    </ion-col> -->\n\n</ion-row>\n\n\n\n      <br>\n\n      <br>\n\n      <hr>\n\n      <br>\n\n\n\n      <!-- <button ion-button block clear type="submit" class="button button-block button-default or-button" text-uppercase style="color: #999;">{{"Or" | translate}}\n\n      </button>\n\n\n\n      <h3 tappable>{{"New User" | translate}}? <span tappable style="color: red" (click)="signup()">{{"Register" | translate}}</span> {{"Here" | translate}}</h3> -->\n\n\n\n      <br>\n\n\n\n    </form>\n\n    <br>\n\n</div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\xampp\htdocs\ionic\boomDome\src\pages\account\login\login.html"*/
+    OrderDetails = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\xampp\htdocs\ionic\boomDome\src\pages\account\order-details\order-details.html"*/'<ion-header no-border>\n  <ion-navbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu">\n      </ion-icon>\n    </button>\n    <ion-title text-center>{{"Order Info" | translate}}\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content class="order-details">\n  <ion-spinner *ngIf="!orderDetails" name="crescent">\n  </ion-spinner>\n  <div *ngIf="orderDetails">\n    <ion-item-group>\n\n      <ion-item class="top-details">\n        <ion-row>\n          <ion-col class="dull">{{"Order Number" | translate }}\n          </ion-col>\n          <ion-col text-right>{{orderDetails.number}}\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col class="dull">{{"Date" | translate}}\n          </ion-col>\n          <ion-col text-right>{{orderDetails.date_created | date:\'medium\'}}\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col class="dull">{{"Payment Method" | translate}}\n          </ion-col>\n          <ion-col text-right>{{orderDetails.payment_method_title}}\n          </ion-col>\n        </ion-row>\n        <!--ion-row>\n          <ion-col class="dull">{{"Shipping Method" | translate}}\n          </ion-col>\n          <ion-col text-right>{{shipping_lines.method_title}}\n          </ion-col>\n        </ion-row-->\n      </ion-item>\n\n      <ion-item-divider>{{"Product Details" | translate}}\n      </ion-item-divider>\n      <ion-item *ngFor="let item of orderDetails.line_items">\n      <h2><span class="dull">{{"Product Name" | translate}} :</span> {{item.name}}\n      </h2>\n      <h2><span class="dull">{{"Price" | translate}} :</span> {{item.price | currency:values.currency:true:\'1.2-2\'}}\n      </h2>\n      <h2><span class="dull">{{"Quantity" | translate}} :</span> {{item.quantity}}\n      </h2>     \n      <h2><span class="dull">{{"SubTotal" | translate}} :</span> {{1*item.subtotal | currency:values.currency:true:\'1.2-2\'}}\n      </h2>\n      </ion-item>\n\n      <ion-item-divider>{{"Billing Address" | translate}}\n      </ion-item-divider>\n      <ion-item>\n        {{orderDetails.billing.first_name}}\n        {{orderDetails.billing.last_name}},\n        <br>\n        {{orderDetails.billing.email}}\n        <br>\n        {{orderDetails.billing.phone}}\n        <br>\n        {{orderDetails.billing.address_1}},\n        <br>\n        {{orderDetails.billing.address_2}},\n        <br>\n        {{orderDetails.billing.city}}, \n        {{orderDetails.billing.state}}\n        <br>\n        {{orderDetails.billing.postcode}}\n      </ion-item>\n      <ion-item-divider>{{"Shipping Address" | translate}}\n      </ion-item-divider>\n      <ion-item>\n        {{orderDetails.shipping.first_name}}\n        {{orderDetails.shipping.last_name}},\n        <br>\n        {{orderDetails.shipping.company}}\n        <br>\n        {{orderDetails.shipping.address_1}},\n        <br>\n        {{orderDetails.shipping.address_2}},\n        <br>\n        {{orderDetails.shipping.city}}, \n        {{orderDetails.shipping.state}}\n        <br>\n        {{orderDetails.shipping.country}}\n        <br>\n        {{orderDetails.shipping.postcode}}\n      </ion-item>\n      <ion-item-divider>{{"Total" | translate}}\n      </ion-item-divider>\n      <ion-item>\n        <ion-row>\n          <ion-col class="dull">{{"SubTotal" | translate}}\n          </ion-col>\n          <ion-col text-right>{{(1*orderDetails.total - 1*orderDetails.shipping_total - 1*orderDetails.total_tax) | currency:values.currency:true:\'1.2-2\'}}\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col class="dull"> {{"Shipping Total" | translate}}\n          </ion-col>\n          <ion-col text-right>{{1*orderDetails.shipping_total | currency:values.currency:true:\'1.2-2\'}}\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col class="dull">{{"Tax Total" | translate}}\n          </ion-col>\n          <ion-col text-right>{{1*orderDetails.total_tax | currency:values.currency:true:\'1.2-2\'}}\n          </ion-col>\n        </ion-row>\n        <ion-row text-uppercase>\n          <ion-col class="dull">{{"Grand Total" | translate}}\n          </ion-col>\n          <ion-col text-right>{{1*orderDetails.total | currency:values.currency:true:\'1.2-2\'}}\n          </ion-col>\n        </ion-row>\n      </ion-item>\n    </ion-item-group>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\xampp\htdocs\ionic\boomDome\src\pages\account\order-details\order-details.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_3__providers_service_functions__["a" /* Functions */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_4__providers_service_values__["a" /* Values */]])
-    ], AccountLogin);
-    return AccountLogin;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */]])
+    ], OrderDetails);
+    return OrderDetails;
 }());
 
-//# sourceMappingURL=login.js.map
+//# sourceMappingURL=order-details.js.map
 
 /***/ })
 

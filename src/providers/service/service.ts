@@ -112,8 +112,10 @@ export class Service {
         params.append("_wpnonce", nonce);
         params.append("login", 'Login');
         params.append("redirect", this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-userdata');
+		
+		 var sentData = this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-login&username='+a.username+'&password='+a.password+'&_wpnonce='+nonce+'&login=Login&redirect='+this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-userdata';
         return new Promise(resolve => {
-            this.http.post(this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-login', params).map(res => res.json())
+            this.http.post(sentData, params).map(res => res.json())
                 .subscribe(data => {
                     if (!data.errors ) {
 						if(data.caps.wc_product_vendors_admin_vendor || data.caps.wc_product_vendors_manager_vendor)
@@ -205,17 +207,7 @@ export class Service {
                 });
         });
     }
-	updateProfile(profile) {
-        var params =  profile;
-		
-        return new Promise(resolve => {
-            this.http.put(this.config.setUrl('PUT', '/wp-json/wc/v2/customers/' + this.values.customerId + '?', false), params).map(res => res.json())
-                .subscribe(data => {
-                    this.products = data;
-                    resolve(this.products);
-                });
-        });
-    }
+	
 	
     saveAddress(address) {
         var params =  address;
@@ -317,6 +309,31 @@ export class Service {
                 });
         });
     }
+	
+	
+	addProduct(data) {
+        // return new Promise(resolve => {
+            // this.http.post(this.config.setUrl('POST', '/wp-json/wc/v2/products?', false), data).map(res => res.json())
+                // .subscribe(data => {
+                    // this.status = data;
+                    // resolve(this.status);
+                // });
+        // });
+		 var params = new URLSearchParams();
+            // params.append("device_id", deviceId);
+            // params.append("platform", platform);
+		return new Promise(resolve => {
+             this.http.post(this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-add-new-product', params, {
+					headers: headers
+				}).map(res => res.json())
+				.subscribe(data => {
+					this.status = data;
+					resolve(this.status);
+				});
+        });
+    }
+	
+	
     presentLoading(text) {
         this.loader = this.loadingCtrl.create({
             content: text,
@@ -371,12 +388,12 @@ export class Service {
 
 	}
 	getVendorProducts(filter){
-  
+   
 		var params = new URLSearchParams();
 		 //params.append("product_id", id);
 		// params.append("customer_id", this.values.customerId.toString());
 		 //params.append("customer_id", 19);
-			var id = this.values.customerId.toString();
+			var id = 19;//this.values.customerId.toString();
 		  return new Promise(resolve => {
 		  this.http.get(this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-getAllVendorProduct&customerId='+id).map(res => res.json())
 			.subscribe(data => {
@@ -386,16 +403,70 @@ export class Service {
 		});
 
 	}
+	
+	getUserData(){
+  
+		var params = new URLSearchParams();
+		 //params.append("product_id", id);
+		// params.append("customer_id", this.values.customerId.toString());
+		 //params.append("customer_id", 19);
+			var id = this.values.customerId;
+			return new Promise(resolve => {
+			this.http.get(this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-getUserData&c_id='+id).map(res => res.json())
+				.subscribe(data => {
+					resolve(data);
+				});
+		});
 
-  getProducts(){
-     return new Promise(resolve => {
-    this.http.get(this.config.setUrl('GET', '/wp-json/wc/v2/products/?', false)).map(res => res.json())
-             .subscribe(data => {
-                this.products = data;
-                resolve(this.products);
+	}
+	updateProfile(profile) {
+        var params =  profile;
+		
+        return new Promise(resolve => {
+            this.http.put(this.config.setUrl('PUT', '/wp-json/wc/v2/customers/' + this.values.customerId + '?', false), params).map(res => res.json())
+                .subscribe(data => {
+                    this.products = data;
+                    resolve(this.products);
+                });
+        });
+    }
+	getProducts(){
+		return new Promise(resolve => {
+			this.http.get(this.config.setUrl('GET', '/wp-json/wc/v2/products/?', false)).map(res => res.json())
+				 .subscribe(data => {
+					this.products = data;
+					resolve(this.products);
+            });
+        }); 
+	}
+	getProductDetail(id){
+		return new Promise(resolve => {
+			this.http.get(this.config.setUrl('GET', '/wp-json/wc/v2/products/'+id+'?', false)).map(res => res.json())
+				 .subscribe(data => {
+					this.products = data;
+					resolve(this.products);
+            });
+        }); 
+	}
+	editProduct(data){
+		return new Promise(resolve => {
+			this.http.get(this.config.setUrl('GET', '/wp-json/wc/v2/products/?', false)).map(res => res.json())
+				 .subscribe(data => {
+					this.products = data;
+					resolve(this.products);
             });
         });
-  }
+	}
+	
+	deleteProduct(id){
+		return new Promise(resolve => {
+			this.http.delete(this.config.setUrl('DELETE', '/wp-json/wc/v2/products/'+id+'?', false)).map(res => res.json())
+				 .subscribe(data => {
+					this.products = data;
+					resolve(this.products);
+            });
+        });
+	}
 
   loadMore(filter){
          return new Promise(resolve => {
@@ -412,7 +483,7 @@ export class Service {
     var params = new URLSearchParams();
     params.append("access_token", token);
         return new Promise(resolve => {
-        this.http.post(this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-facebook_connect', params).map(res => res.json())
+        this.http.post(this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-#C72D46_connect', params).map(res => res.json())
         .subscribe(data => {
             console.log(data);
             if(data.status){

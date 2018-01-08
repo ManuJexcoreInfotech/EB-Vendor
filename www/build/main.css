@@ -78869,6 +78869,109 @@ form.login h3 span {
   padding-bottom: 10px;
 }
 
+.edit-address-form .side-heading-background {
+  background-color: #f2f2f2;
+}
+
+.edit-address-form .heading-label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.edit-address-form .item {
+  padding: 0 25px;
+}
+
+.edit-address-form .list {
+  margin: 0px 0 16px 0;
+}
+
+.edit-address-form .label {
+  margin: 5px 0;
+  font-size: 15px;
+}
+
+.edit-address-form .item.item-label-floating .text-input {
+  margin: 0 0 8px 0;
+  font-size: 15px;
+}
+
+.edit-address-form .label[floating] {
+  font-size: 14px;
+  color: #999;
+}
+
+.edit-address-form .button {
+  margin: 0px;
+  padding: 0 1em;
+  height: 2.5em;
+  border-radius: 0px;
+  font-size: 1.6rem;
+}
+
+.edit-address-form .margin {
+  margin: 0 25px 25px 25px;
+}
+
+.edit-address-form .select-text {
+  min-width: 16px;
+  font-size: 14px;
+}
+
+.edit-address-form .list .item-block .item-inner {
+  border-bottom: 2px solid #edebf5;
+}
+
+.edit-address-form .list > .item-block:last-child {
+  border-bottom: none;
+}
+
+.edit-address-form .item.item-block .item-inner {
+  border-bottom: 2px solid #edebf5;
+}
+
+.edit-address-form .list > .item-block:first-child {
+  border-top: none;
+}
+
+.edit-address-form .item-md.item-toggle ion-label {
+  margin-left: 16px;
+}
+
+.edit-address-form .item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
+  border-bottom-color: #f2f2f2;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.edit-address-form .item-md.item-input.input-has-focus .item-inner {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.edit-address-form .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+  border-bottom-color: #f2f2f2;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.edit-address-form .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child {
+  border-bottom-color: #f2f2f2;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.edit-address-form .list-md .item-input.input-has-focus:last-child {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.edit-address-form .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child {
+  border-bottom-color: #f2f2f2;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 .home .widget.bg-blue-600 {
   background-color: #62a8ea !important;
 }

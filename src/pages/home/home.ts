@@ -33,7 +33,7 @@ export class Home implements OnInit {
 		this.service.getOrders('') 
             .then((results) => this.handleMore1(results));
 		if(!values.isLoggedIn || !values.isVendor){
-			this.nav.setRoot('AccountLogin');  
+			//this.nav.setRoot('AccountLogin');  
 		} 
 		
 		
@@ -142,9 +142,9 @@ export class Home implements OnInit {
     }
 	tabs(tabs){
 		if(tabs == "total_order"){
-			// this.nav.push('Orders');
+			 this.nav.setRoot('Orders');
 		}else{
-			// this.nav.push('ProductsPage');
+			 this.nav.setRoot('ProductsPage');
 		}
 			
 		

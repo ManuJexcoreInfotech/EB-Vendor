@@ -4,7 +4,6 @@ import {Service} from '../../providers/service/service';
 import { Values } from '../../providers/service/values';
 
 
-
 @IonicPage()
 @Component({
     templateUrl: 'add-product.html'
@@ -12,8 +11,8 @@ import { Values } from '../../providers/service/values';
 export class AddProduct {
     status: any;
     form: any;
-    categories: any;
-    editAddress: any;
+    categories: any;	
+    editAddress: any = [];
     regions: any = [];
     address: any;
     id: any;
@@ -28,15 +27,24 @@ export class AddProduct {
 		this.service.load();
 		setTimeout(()=>{    
 			this.categories = this.service.mainCategories;
-			console.log(this.categories);
+			console.log(this.categories); 
 		},2500);
-	}
-   
-  
+	}   
     saveAddress() {
+		
         this.Save = "Save";
         this.disableSubmit = true;
-        if (this.editAddress.shipping_true) {
+		console.log(this.editAddress); 
+		var cat;
+		// for(let data of this.editAddress.category) {
+		
+			// this.regions.push({'id':data});
+		
+		// }
+		this.editAddress.type = 'simple';
+		//this.editAddress.category = this.regions;
+		console.log(this.editAddress); 
+       /*  if (this.editAddress.shipping_true) {
             this.editAddress.shipping.first_name = this.editAddress.billing.first_name;
             this.editAddress.shipping.last_name = this.editAddress.billing.last_name;
             this.editAddress.shipping.company = this.editAddress.billing.company;
@@ -46,13 +54,14 @@ export class AddProduct {
             this.editAddress.shipping.country = this.editAddress.billing.country;
             this.editAddress.shipping.state = this.editAddress.billing.state;
             this.editAddress.shipping.postcode = this.editAddress.billing.postcode;
-        }
-        this.service.saveAddress(this.editAddress)
+        } */
+		
+        this.service.addProduct(this.editAddress)
             .then((results) => this.handleSaveAddress(results));
     }
     handleSaveAddress(results) {
         this.disableSubmit = false;
         this.Save = "Saving";
-        this.nav.setRoot('Address');
+        this.nav.setRoot('ProductsPage');
     }
 }

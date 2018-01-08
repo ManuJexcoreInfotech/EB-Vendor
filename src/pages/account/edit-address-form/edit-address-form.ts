@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, IonicPage,LoadingController } from 'ionic-angular';
 import {Service} from '../../../providers/service/service';
 import { Values } from '../../../providers/service/values';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Functions } from '../../../providers/service/functions';
 
 
 @IonicPage()
@@ -17,17 +18,18 @@ export class EditAddressForm {
     regions: any = [];
     address: any;
     id: any;
+	loading: any;
     country: any;
     billing_states: any;
     shipping_states: any;
     public disableSubmit: boolean = false;
     Save: any;
-    constructor(public nav: NavController, public service: Service, params: NavParams, public values: Values, public formBuilder: FormBuilder) {
+    constructor(public nav: NavController,public Loading: LoadingController, public functions: Functions,public service: Service, params: NavParams, public values: Values, public formBuilder: FormBuilder) {
         this.Save = "Save";
         this.editAddress = params.data;
         this.editAddress.shipping_true = true;
 		
-		this.service.getUserProfile()
+		this.service.getUserData()
             .then((results) => this.handleProfile(results));
 		
 		this.myForm = formBuilder.group({
@@ -55,13 +57,22 @@ export class EditAddressForm {
             .then((results) => this.handleSaveAddress(results));
     }
     handleProfile(results) {
-		console.log(results);
-		
+		this.editAddress.first_name =results[0].first_name;
+		this.editAddress.last_name = results[0].last_name;
+		this.editAddress.email = results[0].user_email;   
 	}
     handleSaveAddress(results) {
         this.disableSubmit = false;
         this.Save = "Saving";
-        this.nav.setRoot('Address');
+		this.loading = this.Loading.create();
+		this.loading.present();
+        
+		setTimeout(()=>{    
+			this.loading.dismiss();
+			this.functions.showAlert("SUCCESS", "Profile Updated Successfully!");
+			this.nav.setRoot('EditAddressForm');
+		},3000);
+        //this.nav.setRoot('Address');
     }
 	
 	onSubmit() {

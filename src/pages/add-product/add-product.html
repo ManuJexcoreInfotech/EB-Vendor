@@ -18,40 +18,30 @@
 		<ion-item>
 			<ion-label floating>{{"Product Name" | translate}}
 			</ion-label>
-			<ion-input required type="text" [(ngModel)]="editAddress.old_password" name="title">
-			</ion-input>
-		</ion-item>
-		<ion-item>
-		  <ion-label>Type</ion-label>
-		  <ion-select [(ngModel)]="type">
-			<ion-option>Simple</ion-option>
-			<ion-option>Feature</ion-option>
-		  </ion-select>
-		</ion-item>
-		<ion-item>
-			<ion-label floating>{{"Product Price" | translate}}
-			</ion-label>
-			<ion-input required type="text" [(ngModel)]="editAddress.old_password" name="price">
+			<ion-input required type="text"  [(ngModel)]="editAddress['name']" name="title">
 			</ion-input>
 		</ion-item>
 		<ion-item>
 			<ion-label floating>{{"Description" | translate}}
 			</ion-label>
-			<ion-textarea #ionTxtArea placeholder='{{placeholder}}' [(ngModel)]="description" (ngModelChange)='onChange($event)'></ion-textarea>
+			<ion-textarea #ionTxtArea placeholder='{{placeholder}}' [(ngModel)]="editAddress['description']" ></ion-textarea>
+		</ion-item>	
+		<ion-item>
+			<ion-label>Category</ion-label> 
+			<ion-select [(ngModel)]="editAddress['category']" multiple="true"> 
+				<ion-option *ngFor="let item of categories" value="{{item.id}}" >{{item.name}}</ion-option>			
+			</ion-select>
 		</ion-item>
 		<ion-item>
-		  <ion-label>Category</ion-label>
-		  <ion-select [(ngModel)]="category" multiple="true"> 
-			<ion-option *ngFor="let item of categories" >{{item.name}}</ion-option>
-			<ion-option>Black Olives</ion-option>
-			<ion-option>Extra Cheese</ion-option>
-			<ion-option>Mushrooms</ion-option>
-			<ion-option>Pepperoni</ion-option>
-			<ion-option>Sausage</ion-option>
-		  </ion-select>
+			<ion-label floating>{{"Product Price" | translate}}
+			</ion-label>
+			<ion-input required type="text" [(ngModel)]="editAddress['regular_price']" name="price">
+			</ion-input> 
 		</ion-item>
-		
-      
+		<ion-item>
+			<ion-label floating>{{"Product Image" | translate}}
+			</ion-label>			
+		</ion-item>
     </ion-list>
 	</div> 
 	<div class="margin">

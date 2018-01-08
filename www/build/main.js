@@ -1,4 +1,4 @@
-webpackJsonp([17],{
+webpackJsonp([18],{
 
 /***/ 161:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -41,7 +41,7 @@ var Home = (function () {
         this.service.getOrders('')
             .then(function (results) { return _this.handleMore1(results); });
         if (!values.isLoggedIn || !values.isVendor) {
-            this.nav.setRoot('AccountLogin');
+            //this.nav.setRoot('AccountLogin');  
         }
     }
     Home.prototype.handleMore1 = function (results) {
@@ -128,14 +128,14 @@ var Home = (function () {
     };
     Home.prototype.tabs = function (tabs) {
         if (tabs == "total_order") {
-            // this.nav.push('Orders');
+            this.nav.setRoot('Orders');
         }
         else {
-            // this.nav.push('ProductsPage');
+            this.nav.setRoot('ProductsPage');
         }
     };
     Home = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\xampp\htdocs\ionic\boomDome\src\pages\home\home.html"*/'<ion-header no-border class="home-header">\n  <ion-navbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu">\n      </ion-icon>\n    </button>\n    <ion-title text-center>{{"Home" | translate}}\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only light class="has-icon icon-only has-badge" style="min-width: 10vw;">   \n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content class="home"> \n                           \n    <ion-spinner *ngIf="!service?.banners" name="crescent">\n    </ion-spinner>\n \n\n  <div *ngIf="service?.categories" class="category-class">\n    <div class="shop-name">\n      <ion-item no-lines>\n        <b color="side-heading-color" text-uppercase>{{"Dashboard"| translate}}\n        </b>\n      </ion-item>\n    </div>\n    <div  class="main-categories">\n      <ion-row class="row unlimited-items">\n        <ion-col class="col widget bg-blue-600">\n          <a (click)="tabs(\'total_order\')">\n            <ion-card  class="widget bg-blue-600">\n				<ion-card-content >\n					<div class="counter-label margin-bottom-20"> \n						<div class="white">Total Products</div>\n						<div class="blue-200"></div>\n                    </div>\n					<div class="counter-number-group margin-bottom-15">\n						<span class="counter-number-related"></span>\n						<span class="counter-number white" >{{total_product}}</span>\n                    </div>\n				</ion-card-content>\n              <div text-center>\n                <ion-label text-uppercase [innerHTML]="">\n                </ion-label>\n              </div>\n            </ion-card>\n          </a>\n        </ion-col>\n		<ion-col class="col widget bg-red-600">\n          <a (click)="tabs(\'total_product\')">\n            <ion-card class="widget  bg-red-600">\n				<ion-card-content>\n					<div class="counter-label margin-bottom-20">\n						<div class="white">Total Orders</div>\n						<div class="blue-200"></div>\n                    </div>\n					<div class="counter-number-group margin-bottom-15">\n						<span class="counter-number-related"></span>\n						<span class="counter-number white" >{{total_order}}</span>\n                    </div>\n				</ion-card-content>\n              <div text-center>\n                <ion-label text-uppercase [innerHTML]="">\n                </ion-label>\n              </div>\n            </ion-card>\n          </a>\n        </ion-col>\n      </ion-row>\n    </div>\n  </div>\n\n    <ion-spinner *ngIf="!products && service?.banners" name="crescent">\n    </ion-spinner>\n\n\n      <!-- <div *ngIf="products" class="products-listing"> -->\n      <!-- <ion-item no-lines class="item-name"> -->\n        <!-- <ion-label>{{"Latest Products" | translate}} -->\n        <!-- </ion-label> -->\n      <!-- </ion-item> -->\n      <!-- <div class="grid"> -->\n        <!-- <ion-row class="row unlimited-items"> -->\n          <!-- <ion-col class="col" *ngFor="let item of products"> -->\n            <!-- <ion-card> -->\n              <!-- <ion-card-content class="stock"> -->\n\n                  <!-- <img tappable src="{{item.images[0].src}}" (click)="getProduct(item.id)"> -->\n                  <!-- <button ion-button color="danger" *ngIf="!item.in_stock">{{"No Stock" | translate}} -->\n                  <!-- </button> -->\n\n              \n              <!-- <ion-icon name="md-heart" class="wishlist-button-grid1" *ngIf="values.wishlistId[item.id]" (click)="removeFromWishlist(item.id)"></ion-icon> -->\n              <!-- <ion-icon name="md-heart-outline" class="wishlist-button-grid2" *ngIf="!values.wishlistId[item.id]" (click)="addToWishlist(item.id)"></ion-icon> -->\n\n              \n              <!-- </ion-card-content> -->\n\n              <!-- <div tappable (click)="getProduct(item.id)" class="card-name"> -->\n              <!-- <ion-label *ngIf="item.title">{{item.title}} -->\n              <!-- </ion-label> -->\n              <!-- <ion-label *ngIf="item.name">{{item.name}} -->\n              <!-- </ion-label> -->\n              <!-- </div> -->\n\n              <!-- <ion-label> -->\n                 \n                <!-- <span class="price-delete" *ngIf="item.sale_price"> -->\n                <!-- <del>{{1*item.regular_price | currency:values.currency:true:\'1.2-2\'}} -->\n                <!-- </del> -->\n                <!-- </span> -->\n                <!-- <span class="price-regular" *ngIf="!item.sale_price">{{1*item.price | currency:values.currency:true:\'1.2-2\'}} -->\n                <!-- </span> -->\n                <!-- <span class="price-regular" *ngIf="item.sale_price">{{1*item.sale_price | currency:values.currency:true:\'1.2-2\'}} -->\n                <!-- </span> -->\n              <!-- </ion-label> -->\n\n            <!-- </ion-card> -->\n          <!-- </ion-col> -->\n        <!-- </ion-row> -->\n      <!-- </div> -->\n\n      <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items"> -->\n        <!-- <ion-infinite-scroll-content -->\n         <!-- loadingSpinner="crescent" -->\n         <!-- loadingText={{values.lan.GettingMoreElements}}> -->\n        <!-- </ion-infinite-scroll-content> -->\n      <!-- </ion-infinite-scroll> -->\n\n        <!-- </div> -->\n\n\n</ion-content>\n'/*ion-inline-end:"C:\xampp\htdocs\ionic\boomDome\src\pages\home\home.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\xampp\htdocs\ionic\boomDome\src\pages\home\home.html"*/'<ion-header no-border class="home-header">\n  <ion-navbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu">\n      </ion-icon>\n    </button>\n    <ion-title text-center>{{"Home" | translate}}\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only light class="has-icon icon-only has-badge" style="min-width: 10vw;">   \n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content class="home"> \n                           \n    <ion-spinner *ngIf="!service?.banners" name="crescent">\n    </ion-spinner>\n \n\n  <div *ngIf="service?.categories" class="category-class">\n    <div class="shop-name">\n      <ion-item no-lines>\n        <b color="side-heading-color" text-uppercase>{{"Dashboard"| translate}}\n        </b>\n      </ion-item>\n    </div>\n    <div  class="main-categories">\n      <ion-row class="row unlimited-items">\n        <ion-col class="col widget bg-blue-600">\n          <a (click)="tabs(\'total_product\')">\n            <ion-card  class="widget bg-blue-600">\n				<ion-card-content >\n					<div class="counter-label margin-bottom-20"> \n						<div class="white">Total Products</div>\n						<div class="blue-200"></div>\n                    </div>\n					<div class="counter-number-group margin-bottom-15">\n						<span class="counter-number-related"></span>\n						<span class="counter-number white" >{{total_product}}</span>\n                    </div>\n				</ion-card-content>\n              <div text-center>\n                <ion-label text-uppercase [innerHTML]="">\n                </ion-label>\n              </div>\n            </ion-card>\n          </a>\n        </ion-col>\n		<ion-col class="col widget bg-red-600">\n          <a (click)="tabs(\'total_order\')">\n            <ion-card class="widget  bg-red-600">\n				<ion-card-content>\n					<div class="counter-label margin-bottom-20">\n						<div class="white">Total Orders</div>\n						<div class="blue-200"></div>\n                    </div>\n					<div class="counter-number-group margin-bottom-15">\n						<span class="counter-number-related"></span>\n						<span class="counter-number white" >{{total_order}}</span>\n                    </div>\n				</ion-card-content>\n              <div text-center>\n                <ion-label text-uppercase [innerHTML]="">\n                </ion-label>\n              </div>\n            </ion-card>\n          </a>\n        </ion-col>\n      </ion-row>\n    </div>\n  </div>\n\n    <ion-spinner *ngIf="!products && service?.banners" name="crescent">\n    </ion-spinner>\n\n\n      <!-- <div *ngIf="products" class="products-listing"> -->\n      <!-- <ion-item no-lines class="item-name"> -->\n        <!-- <ion-label>{{"Latest Products" | translate}} -->\n        <!-- </ion-label> -->\n      <!-- </ion-item> -->\n      <!-- <div class="grid"> -->\n        <!-- <ion-row class="row unlimited-items"> -->\n          <!-- <ion-col class="col" *ngFor="let item of products"> -->\n            <!-- <ion-card> -->\n              <!-- <ion-card-content class="stock"> -->\n\n                  <!-- <img tappable src="{{item.images[0].src}}" (click)="getProduct(item.id)"> -->\n                  <!-- <button ion-button color="danger" *ngIf="!item.in_stock">{{"No Stock" | translate}} -->\n                  <!-- </button> -->\n\n              \n              <!-- <ion-icon name="md-heart" class="wishlist-button-grid1" *ngIf="values.wishlistId[item.id]" (click)="removeFromWishlist(item.id)"></ion-icon> -->\n              <!-- <ion-icon name="md-heart-outline" class="wishlist-button-grid2" *ngIf="!values.wishlistId[item.id]" (click)="addToWishlist(item.id)"></ion-icon> -->\n\n              \n              <!-- </ion-card-content> -->\n\n              <!-- <div tappable (click)="getProduct(item.id)" class="card-name"> -->\n              <!-- <ion-label *ngIf="item.title">{{item.title}} -->\n              <!-- </ion-label> -->\n              <!-- <ion-label *ngIf="item.name">{{item.name}} -->\n              <!-- </ion-label> -->\n              <!-- </div> -->\n\n              <!-- <ion-label> -->\n                 \n                <!-- <span class="price-delete" *ngIf="item.sale_price"> -->\n                <!-- <del>{{1*item.regular_price | currency:values.currency:true:\'1.2-2\'}} -->\n                <!-- </del> -->\n                <!-- </span> -->\n                <!-- <span class="price-regular" *ngIf="!item.sale_price">{{1*item.price | currency:values.currency:true:\'1.2-2\'}} -->\n                <!-- </span> -->\n                <!-- <span class="price-regular" *ngIf="item.sale_price">{{1*item.sale_price | currency:values.currency:true:\'1.2-2\'}} -->\n                <!-- </span> -->\n              <!-- </ion-label> -->\n\n            <!-- </ion-card> -->\n          <!-- </ion-col> -->\n        <!-- </ion-row> -->\n      <!-- </div> -->\n\n      <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items"> -->\n        <!-- <ion-infinite-scroll-content -->\n         <!-- loadingSpinner="crescent" -->\n         <!-- loadingText={{values.lan.GettingMoreElements}}> -->\n        <!-- </ion-infinite-scroll-content> -->\n      <!-- </ion-infinite-scroll> -->\n\n        <!-- </div> -->\n\n\n</ion-content>\n'/*ion-inline-end:"C:\xampp\htdocs\ionic\boomDome\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__["a" /* Functions */]])
     ], Home);
@@ -168,72 +168,76 @@ webpackEmptyAsyncContext.id = 173;
 
 var map = {
 	"../pages/account/address/address.module": [
-		691,
-		14
+		693,
+		15
 	],
 	"../pages/account/edit-address-form/edit-address-form.module": [
-		692,
+		694,
 		6
 	],
 	"../pages/account/forgotten/forgotten.module": [
-		693,
-		13
+		695,
+		14
 	],
 	"../pages/account/login/login.module": [
-		694,
-		12
+		696,
+		13
 	],
 	"../pages/account/order-details/order-details.module": [
-		695,
-		11
+		697,
+		12
 	],
 	"../pages/account/orders/orders.module": [
-		696,
-		10
+		698,
+		11
 	],
 	"../pages/account/register/register.module": [
-		697,
+		699,
 		5
 	],
 	"../pages/account/wishlist/wishlist.module": [
-		698,
+		700,
 		4
 	],
 	"../pages/add-product/add-product.module": [
-		699,
+		701,
 		3
 	],
 	"../pages/cart/cart.module": [
-		702,
+		703,
 		2
 	],
 	"../pages/checkout/billing-address-form/billing-address-form.module": [
-		700,
+		702,
 		1
 	],
 	"../pages/checkout/order-summary/order-summary.module": [
-		701,
+		704,
 		0
 	],
 	"../pages/checkout/terms-condition/terms-condition.module": [
-		703,
+		705,
+		10
+	],
+	"../pages/edit-product/edit-product.module": [
+		706,
 		9
 	],
 	"../pages/home/home.module": [
-		704,
-		16
+		707,
+		17
 	],
 	"../pages/product/product.module": [
-		705,
+		708,
 		7
 	],
 	"../pages/products/products.module": [
-		706,
+		709,
 		8
 	],
 	"../pages/search/search.module": [
-		707,
-		15
+		710,
+		16
 	]
 };
 function webpackAsyncContext(req) {
@@ -279,6 +283,7 @@ var Values = (function () {
         this.customerFName = "";
         this.customerLName = "";
         this.customerId = null;
+        this.productDiD = null;
         this.listview = false;
         this.cart = [];
         this.filterUpdate = false;
@@ -292,7 +297,7 @@ var Values = (function () {
         this.data = {};
         this.logoutUrl = "";
         this.avatar = "assets/image/shop-icon.jpg";
-        this.lan = { "About": "About", "Account": "Account", "AccountInfo": "Account Information", "AccountMyDownloadableProducts": "My Downloadable Products", "AccountMyDownloadableProductsDate": "Date", "AccountMyDownloadableProductsOpen": "Open", "AccountMyDownloadableProductsOrder": "Order", "AccountMyDownloadableProductsRemainingDownloads": "Remaining downloads", "AccountMyDownloadableProductsStatus": "Status", "AccountSettings": "Account Settings", "AccountSettingsCancel": "Home", "Add": "Add", "AddAddressFromContacts": "Add Address from Contacts", "AddBillingAddressText": "Add a billing address", "AddCustomText": "Add Custom", "AddFilterTitle": "Filter", "AddNewAddress": "Add New Address", "AddNewEntry": "Add", "AddShippingAddressText": "Add a shipping address", "AddToCart": "Add to Cart", "AddToCartTitle": "Add to Cart", "AddToWishlistTitle": "Add to Wishlist", "AddingProductToCartProgressTitle": "Adding Product to Cart...", "AddingProductToWishListProgressTitle": "Adding Product to WishList...", "AdditionalInfo": "Additional Info", "AddressBook": "Address Book", "AddressBookIsEmpty": "Address book is empty", "AddressBookUpdatedMessage": "Address Book Updated", "AddressInfo": "Address Info", "AgreementsButtonTitle": "Read the Terms and Conditions", "AgreementsCheckboxTitle": "I agree to the Terms and Conditions", "AgreementsDescription": "You must read and agree to the Terms and Conditions before placing your order.", "AllImages": "All Images", "AlsoLikeLbl": "You may also like", "Amount": "Amount", "AmountIn": "Amount in %@", "Amounts": "Amounts", "AppIdNotActivated": "The application is currently inactive.\\nPlease try again later.", "ApplicationCode": "App code", "AppliedFiltersLabel": "FILTERS APPLIED", "Apply": "Apply", "ApplyingCouponProgressTitle": "Applying Coupon Code", "ApplyingGiftCartProgressTitle": "Applying Gift Card %@", "AsGuestText": "as Guest", "AsLowAsExcludingTaxLabel": "As low as excl. tax", "AsLowAsIncludingTaxLabel": "As low as incl. tax", "AsLowAsLabel": "As low as", "AuthenticationToSocialClientFailedAlertMessage": "Authentication to %@ did failed...", "AverageRating": "Average Rating", "Back": "Back", "BackFromInfo": "Back", "BiggerThanMaxMessage": "The value should not be greater than %.2f!", "BillingAddressTitle": "Billing address", "BillingCheckout": "Billing", "BundleProductsSectionTitle": "Bundle Products", "BuyMoreAndSave": "Buy More & Save", "Cancel": "Cancel", "CancelButtonTitle": "Cancel", "CancelingPayPalMECLProgressTitle": "Canceling PayPal ...", "Cart": "Shopping Cart", "CartBtn": "Cart", "CartIsEmpty": "The cart is empty", "CartRegisteredMessage": "Offline cart stored on server", "CartRegisteredTitle": "", "CartRegistrationFailedMessage": "Storage of offline cart on server failed. Please retry later", "CartRegistrationFailedTitle": "Error", "CartUpdatedMessageTitle": "Cart Updated", "CheckGiftCardLabel": "Check Gift Card", "CheckingCartProgressTitle": "Checking Gift Card %@", "CheckoutAsGuestButtonTitle": "Checkout as Guest", "CheckoutButtonFullTitle": "Proceed to Checkout", "CheckoutButtonTitle": "Checkout", "CheckoutInitializationProgressTitle": "Checkout initialization...", "CheckoutInitializedText": "Checkout initialized!", "CheckoutTitle": "Checkout", "ChooseAmount": "Choose amount", "City": "City", "Clear": "Clear", "Close": "Close", "CommitCartChangesAlertText": "You have uncommitted actions. Commit?", "CommittingUpdatesProgressTitle": "Commiting updates...", "ConfigurationLoadingError": "There is an error in loading an app's configuration", "ConfigureTitle": "Select Options", "Connecting": "Connecting", "ConnectionErrorMessage": "Connection Error\\nWe're sorry. The app is experiencing connection problems. The app requires a network connection to operate.", "ConnectionLostMessage": "Connection Error\\nWe're sorry. The app is experiencing connection problems. The app requires a network connection to operate.", "ContactsAreEmpty": "ContactsAreEmpty", "Continue": "Continue", "Copyright": "Copyright: Magento (c) 2010", "Country": "Country", "CountrySelect": "Countries", "CreateAccount": "Create an Account", "CreateAccountButtonTitle": "Create Account", "CreateAccountLabel": "Create Account", "CreateAccountSectionHeader": "New to Our Store?", "CreateAnAccountLabel": "Create an Account", "CrossSellsText": "Cross Sells", "CrossellTitle": "You may also like", "CustomAmount": "Custom amount", "DateText": "Date", "DateTitle": "Date:", "Delete": "Delete", "DeleteItemMessage": "Are you sure you want to remove this item?", "DeleteRecordButtonTitle": "Delete", "Description": "Description", "DiscountButtonTitle": "Apply", "DiscountLabel": "Discount:", "DiscountTextFieldPlaceholder": "Enter discount code if any", "DiscoutnButtonTitle": "Apply", "DoneTitle": "Done", "DownloadableProductLinkSample": "Sample", "DownloadableProductsUpdatedMessage": "Downloadable Products Updated", "DownloadsLimitTitle": "Downloads limit:", "Edit": "Edit", "EditAccountButtonTitle": "Save", "EditAddressBookRecord": "Edit Address", "EditFilterTitle": "Edit filter", "EditMailList": "Edit Mail List", "EditNote": "Edit note", "Email": "E-mail", "EmailCopyLabel": "Cc:", "EmailCountMaxExceed": "Too many recipients have been set.  Max amount of recipients is:", "EmailLabel": "To:", "EmailThemeLabel": "Subject:", "EmptyCategoryMessage": "Sorry, there are no items in this category.", "EmptyDiscount": "Enter discount code first.", "EmptyDiscountCodeAlertMessage": "Discount code is empty", "EmptyEmails": "Please enter at least one email recipient", "EmptyGalleryMessage": "This product has no images.", "EmptyGiftCardValueMessage": "Please, specify gift card amount!", "EmptyMyDownloadableViewMessage": "List of downloadable products is empty", "EmptyStoreCreditHistoryMessage": "There is no store credit history!", "EmptyViewMessage": "There are no items here", "EmptyWishlistViewMessage": "Wishlist is empty.", "EnterEmailText": "Enter e-mail", "EnterGiftCardPromo": "Enter giftcard promo code here", "EnterNameText": "Enter Name", "EnterText": "Enter text", "Error": "Error", "ErrorEmailMessage1": "Email is not specified", "ErrorEmailMessage2": "Email is not correct", "ErrorLoadingConfigurationFormat": "Error Loading Configuration Format", "ErrorPasswordMessage1": "Password is not specified", "ErrorRetrievingData": "There is an error in retrieving the data. Please try again later", "ExcludingTaxLabel": "", "Facebook": "Facebook", "FacebookPostFailedMessage": "Facebook post failed...", "FacebookPostSuccess": "Successfully posted to Facebook", "FieldRequiredToBeFilledDialogMessage": "The %s field should be filled.", "Filters": "Filters", "FixedAmounts": "Fixed amounts", "ForgotPassword": "Forgot Password", "ForgotPasswordButtonTitle": "Forgot Password?", "ForgotPasswordSectionHeader": "Forgot your password?", "Form": "Form", "FormCellTitle": "Form", "FromExcludingTaxLabel": "From excl. tax", "FromIncludingTaxLabel": "From incl. tax", "FullDescription": "Full Description", "FunctionalityIsDisabledInOfflineModeAlertMessage": "This functionality disabled in offline mode", "Gallery": "Gallery", "GetMoreElements": "Load more items", "GettingMoreElements": "Loading more items...", "GiftCardCodeCheck": "Check", "GiftCardCodeRedeem": "Redeem", "GiftCardPromo": "Giftcard promo code", "GiftCartRedeemedMessageText": "Check Gift Card Promo Redeemed", "Giftcards": "Enter the gift card code", "GuestLogInMessage": "Checkout as Guest or Register", "Home": "Home", "IAgree": "I Agree", "InStock": "In Stock", "IncludingTaxLabel": "Incl. tax", "IncorrectDecimalValueDialogMessage": "You have entered an incorrect decimal value in the custom amount field. Provide a valid value.", "InitializationPayPalMECLFailedMessage": "Initialization of the PayPal checkout failed!", "InitializationPayPalMECLProgressTitle": "Initialization PayPal ...", "InvalidEmailDialogMessage": "Email address you provided is not valid. Please provide a valid one.", "InvalidResponse": "The server responded with invalid data.", "Item": "Item", "ItemOptionsSectionTitle": "Item Options", "LastOrders": "My Orders", "LastUpdatePullDownText": "Last update: %@", "LessThatMinMessage": "The value should not be less than %.2f!", "LindedIn": "LindedIn", "LinkTitle": "Link:", "LinkedIn": "LinkedIn", "LinkedInAuthorization": "LinkedIn Authorization", "LinkedInAutorization": "LinkedIn Autorization", "LinkedInPostSuccess": "Successfully posted to Linkedin", "LinkedInTitle": "LinkedIn", "LinkedinPostFailedMessage": "Linkedin post failed...", "LoadingAccountFormProgressTitle": "Loading Account Form...", "LoadingAddressBookProgressTitle": "Loading Address Book...", "LoadingAddressFormProgressTitle": "Loading Address Form...", "LoadingCMSPageProgtessTitle": "Loading CMS page ...", "LoadingCartProgressTitle": "Loading Cart...", "LoadingCategoryProgressTitle": "Loading category ...", "LoadingDownloadableProductsProgressTitle": "Loading My Downloadable Products...", "LoadingGalleryProgressTitle": "Loading Gallery...", "LoadingLoginFormProgressTitle": "Loading Login Form...", "LoadingMoreItems": "", "LoadingOrderDetailsProgressTitle": "Loading Order Details", "LoadingOrdersListProgressTitle": "Loading Orders List...", "LoadingProductOptionsProgressTitle": "Loading Product Options...", "LoadingProductProgressTitle": "Loading product ...", "LoadingProductsProgressTitle": "Loading Products...", "LoadingProgressTitle": "Loading %@...", "LoadingRegistrationFormProgressTitle": "Loading Registration Form...", "LoadingRestorePasswordFormProgressTitle": "Loading Restore Password Form...", "LoadingShippindPayPalMECLProgressTitle": "Loading shipping methods ...", "LoadingStoreCreditProgressTitle": "Loading Store Credit...", "LoadingText": "Loading...", "LoadingWishListProgressTitle": "Loading WishList...", "LoadingWriteReviewFormProgressTitle": "Loading Write Review Form...", "LogIn": "Log In", "LogInButtonTitle": "Log into Account", "LogInEmailLabel": "Email", "LogInMessage": "You must login first", "LogInMessageTitle": "LogInMessageTitle", "LogInPasswordLabel": "Password", "LogInSectionHeader": "Log into your account", "LogOut": "Log Out", "LogOutButtonTitle": "Log out Account", "MailToText": "To:", "MaxLengthMessage": "The max length of the field \"%@\" is %d!", "Maximum": "Maximum: %.2f", "MergeButtonTitle": "Merge", "MessageText": "Message", "MessageTwitterTooLong": "Message too long, please use 140 symbols", "Minimize": "Minimize", "Minimum": "Minimum: %.2f", "MoreInfo": "More Info", "MyAccount": "My Account", "NameText": "Name", "NewAddressBookRecord": "Add New Address", "No": "No", "NoInternetConnectionAlertTitle": "No internet connection. Retry later ...", "NoLastOrders": "You have placed no orders.", "NoProductsFoundAlertTitle": "No products found. Please retry with other term", "NoProductsMatchingSelection": "", "NoSupportForOrderDetails": "Currently, the system does not support the viewing of the order detail.", "NotCorrectField": "%@ is not correct", "NotEmail": "The following email(s) are either mistyped or have incorrect format. Check them and try again:\\n", "NotLoggedInAlertMessage": "You are not logged in", "NotZeroCustomValueDialogMessage": "The custom amount value should be higher than 0.", "NothingSelected": "At least one option should be selected", "Notice": "Notice", "OK": "OK", "OpenAmountPriceBoundariesText": "Minimum %@, maximum %@", "Options": "Options", "OptionsTitle": "Options", "OrderCanceledAlertMessage": "You canceled your order. Touch \"Pay with PayPal\" to try again.", "OrderCanceledPayPalMECLMessage": "Order canceled", "OrderDetailsUpdatedMessage": "Order Details Updated", "OrderFailedAlertMessage": "Your order failed. Touch \"Pay with PayPal\" to try again.", "OrderFailedMessage": "Order failed", "OrderHeader": "Order #", "OrderIDTitle": "Order ID:", "OrderInfoTitle": "Order Info", "OrderListUpdatedMessage": "Order List Updated", "OrderNumberText": "Order Number", "OrderReviewCheckout": "Order Review", "OrderReviewScreenTitle": "Order Review", "OrderedItemsText": "Ordered Items", "OtherAmount": "Other amount", "OutOfStock": "Out of Stock", "ParsingError": "Error while reading remote data", "PasswordLength": "The minimum password length is 6", "PayPalCheckout": "PayPal Checkout", "PayPalText": "PayPal", "PaymentBridgeServiceErrorMessage": "Unknown Payment Bridge Error", "PaymentMethodSectionTitle": "Payment Method", "PaymentMethodSelectionWarning": "Please select payment method to cover a quote", "PaymentMethodTitle": "Payment method", "PaymentMethodsCheckout": "Payment Information", "PlaceOrder": "Place Order", "PlacingOrderProgressTitle": "Placing order ...", "PostToLinkedIn": "Share on LinkedIn", "PostToTwitter": "Share on Twitter", "PostToWallProduct": "Post this product to your wall", "PostingEmailProgressTitle": "Posting to e-mails", "Price": "Price", "PriceExcludingTax": "Price excluding tax", "PriceIncludingTax": "Price including tax", "Product": "Product", "ProductAddedAlertMessage": "Product succesfully added to cart", "ProductAddedAlertTitle": "Product added", "ProductAddedToCartLabelTitle": "Product Added to Cart", "ProductAddedToWishlistLabelTitle": "Product Added to Wishlist", "ProductGalleryUpdatedMessage": "Product Gallery Updated", "ProductOptionsUpdatedMessage": "Product Options Updated", "ProductOutOfStockAlertMessage": "Product is out of stock", "ProductOutOfStockAlertTitle": "", "ProductPaymentCompleteLabelTitle": "Success", "ProductPaymentCompleteleLabelTitle": "Success", "ProductRemovedFromWishlistLabelTitle": "Product Removed From Wishlist", "ProductReviewsUpdatedMessage": "Product Reviews Updated", "ProductUpdatedMessage": "Product Updated", "ProductsText": "Products", "PullDownToUpdatePullDownText": "Pull Down To Update..", "Qty": "Qty", "Quantity": "Quantity", "QuantityTitle": "Qty:", "RatingReviewsNone": "No Ratings", "RatingReviewsTitle": "Ratings and Reviews", "RecoverPasswordButtonTitle": "Recover", "RedemingGiftCartProgressTitle": "Redeeming Gift Card %@", "RegionFieldLabel": "State/Province", "RegionSelect": "Regions", "RegisterText": "Register", "RegisteringOfflineCartProgressTitle": "Registering cart ...", "RegisteringUserProgressTitle": "Registering user ...", "RegularLabel": "Regular", "RegularPriceLabel": "Unit Price:", "RelatedProductLabel": "You may also like", "ReleaseToUpdatePullDownText": "Release To Update...", "RemoveFromWishlistTitle": "Remove", "RemoveGiftCardLabel": "Remove", "RemoveText": "Remove", "RemovingAddressProgressTitle": "Remove Address...", "RemovingCouponProgressTitle": "Removing Coupon...", "RemovingGiftCartProgressTitle": "Removing Gift Card...", "RemovingProductFromWishListProgressTitle": "Removing Product from WishList...", "RemovingProgressTitle": "Removing %@...", "RemovingStoreCreditProgressTitle": "Removing Store Credit...", "RequiredFieldMessage": "field is required", "RequiredFieldTitle": "required", "RequiredLabel": "* - field is required", "Revert": "Revert", "RevertDiscountButtonTitle": "Revert Discount", "SamplesButtonTitle": "Samples", "Save": "Save", "SavingAddressProgressTitle": "Saving Address...", "SavingChangesProgressTitle": "Saving changes ...", "SavingMethodsProgressTitle": "Saving shipping methods ...", "SavingShippingAddressProgressTitle": "Saving shipping address ...", "Search": "Search", "SearchUpdatedMessage": "Search Updated", "SearchingProgressTitle": "Searching for %@...", "SeeAllText": "See all", "SelectA": "Select a", "SelectBillingAddressTitle": "Select a Billing Address", "SelectBillingMethodTitle": "Select a Billing Address", "SelectBillingMethodTitleNoAddress": "", "SelectBoxFormat": "Select %@", "SelectFromAddressBook": "Select from Address Book", "SelectLinks": "Select Links", "SelectOptions": "Select Options", "SelectPaymentMethod": "Select Payment Method", "SelectShippingAddressTitle": "Select a Shipping Address", "SelectShippingMethod": "Select shipping method", "SelectShippingMethodTitle": "Select a Shipping Address", "Send": "Send", "SendEmail": "Send", "SendEmailTitle": "Tell a Friend", "SendTitle": "Send", "SendingEmailFailedMessage": "Sending e-mail failed...", "SetEmailMessage": "Please set email", "SettedText": "Set", "ShakeToResetFilters": "Shake device to reset the filter", "Share": "Share", "ShareTitle": "Share", "ShippingAddressTitle": "Shipping address", "ShippingCheckout": "Shipping", "ShippingMethodTitle": "Shipping method", "ShippingMethodsCheckout": "Ship method", "Shop": "Shop", "ShopAll": "Shop All", "ShopUpdatedMessageTitle": "Shop Updated", "ShorteningUrlClientSideError": "The shortening service returned status code %d indicating a client side error.", "ShorteningUrlError": "Error during shortening url", "ShorteningUrlServerSideError": "The shortening service returned status code %d indicating a server side error.", "ShowPasswordLabelTitle": "Show Password", "SignIn": "Sign In", "SignOutProgressTitle": "Signing Out ...", "SigningInProgressTitle": "Signing In...", "Sku": "Product SKU", "SortByLabel": "SORT BY:", "SpecialExcludingTaxLabel": "Special", "SpecialIncludingTaxLabel": "Incl. tax", "SpecifyPaymentMethod": "Please specify payment method", "SpecifyShippingMethod": "Please specify shipping method", "StandardCheckout": "Standard Checkout", "StartingAtExcludingTaxLabel": "Starting at excl. tax", "StartingAtIncludingTaxLabel": "Starting at incl. tax", "StatusText": "Status", "StoreCredit": "Store credit", "StoreCreditBalanceHeader": "Balance", "StoreCreditInfoUpdatedMessage": "Store Credit Info Updated", "StrAddress": "Address", "SubmitReview": "Submit Review", "SubmittingReviewProgressTitle": "Submitting Review...", "Subtotal": "Subtotal", "SubtotalExcludingTax": "Subtotal excluding tax", "SubtotalExcludingTaxLabel": "Subtotal:", "SubtotalIncludingTax": "Subtotal including tax", "SubtotalIncludingTaxLabel": "Subtotal incl. tax:", "SubtotalRegularPriceLabel": "Subtotal:", "SuccessOrderID": "Order ID", "SwipeToRevealOptions": "Swipe a product to reveal more options", "Telephone": "Telephone", "TellAFriendButtonTitle": "Tell a Friend", "TellAFriendTitle": "Tell a Friend", "TermsAndConditions": "Terms And Conditions", "ThereAreNoItemsInYourCart": "There are no items in your cart", "ThereIsNoAddressesForThisContact": "There is no addresses for this contact", "ToExcludingTaxLabel": "To excl. tax", "ToHighCustomValueDialogMessage": "The custom amount value should not be higher than %s.", "ToIncludingTaxLabel": "To incl. tax", "ToLowCustomValueDialogMessage": "The custom amount value should not be lower than %s.", "TooBigValueMessage": "The value is too big!", "TooLongTextDialogMessage": "The length of the text in the %s field is too big. Please shorten the text.", "TotalsText": "Totals", "TouchAndHoldToDeleteProduct": "Touch and hold a product to delete from shopping cart", "TouchAndHoldToRevealOptions": "Touch and hold a product to reveal more options", "TryAgain": "Try Again", "Twitter": "Twitter", "TwitterAuthorization": "Twitter Authorization", "TwitterAutorization": "Twitter Autorization", "TwitterPostFailedMessage": "Twitter post failed...", "TwitterPostSuccess": "Your tweet has been sent. Thanks for sharing this product on Twitter", "TypeTitle": "Type", "URLOrCodeNotSet": "Either remote URL or application code was not set. Please make sure you filled all the values and try again.", "UnknownException": "Unknown error ocured. Please retry later", "UpdateCommentErrorMessage": "Update Comment Error", "UpdatingCartProgressTitle": "Updating Cart...", "UpdatingPullDownText": "Updating ...", "UseBillingAddress": "Use Billing Address", "UseBillingAddressForShipping": "Use billing address for shipping", "Version": "Version", "ViewCartButtonTitle": "View Cart", "ViewDetailsTitle": "View Details", "ViewGalleryTitle": "View Gallery", "ViewWishlistButtonTitle": "View Wishlist", "WaitTitle": "Please wait...", "WebStoreAvailableOnly": "Product only available on the website.", "WebsiteRestrictionEnabledMessage": "Website is offline", "WishListUpdatedMessage": "WishList Updated", "Wishlist": "My Wishlist", "WishlistPopupTitle": "Add To Wishlist", "WriteAReview": "Write a review", "WriteReviewTitle": "Write a Review", "WrongEmailFormat": "Wrong email format", "XMLConnectURL": "URL", "Yes": "Yes", "iPhoneAddressBookNavigationBarTitle": "Address Book", "labelPayWithCheckoutTitle": "OR, Pay with Standard Checkout", "qtyLabelTitle": "Quantity:", "buyNow": "Buy Now", "Categories": "Categories" };
+        this.lan = { "About": "About", "Account": "Account", "AccountInfo": "Account Information", "AccountMyDownloadableProducts": "My Downloadable Products", "AccountMyDownloadableProductsDate": "Date", "AccountMyDownloadableProductsOpen": "Open", "AccountMyDownloadableProductsOrder": "Order", "AccountMyDownloadableProductsRemainingDownloads": "Remaining downloads", "AccountMyDownloadableProductsStatus": "Status", "AccountSettings": "Account Settings", "AccountSettingsCancel": "Home", "Add": "Add", "AddAddressFromContacts": "Add Address from Contacts", "AddBillingAddressText": "Add a billing address", "AddCustomText": "Add Custom", "AddFilterTitle": "Filter", "AddNewAddress": "Add New Address", "AddNewEntry": "Add", "AddShippingAddressText": "Add a shipping address", "AddToCart": "Add to Cart", "AddToCartTitle": "Add to Cart", "AddToWishlistTitle": "Add to Wishlist", "AddingProductToCartProgressTitle": "Adding Product to Cart...", "AddingProductToWishListProgressTitle": "Adding Product to WishList...", "AdditionalInfo": "Additional Info", "AddressBook": "Address Book", "AddressBookIsEmpty": "Address book is empty", "AddressBookUpdatedMessage": "Address Book Updated", "AddressInfo": "Address Info", "AgreementsButtonTitle": "Read the Terms and Conditions", "AgreementsCheckboxTitle": "I agree to the Terms and Conditions", "AgreementsDescription": "You must read and agree to the Terms and Conditions before placing your order.", "AllImages": "All Images", "AlsoLikeLbl": "You may also like", "Amount": "Amount", "AmountIn": "Amount in %@", "Amounts": "Amounts", "AppIdNotActivated": "The application is currently inactive.\\nPlease try again later.", "ApplicationCode": "App code", "AppliedFiltersLabel": "FILTERS APPLIED", "Apply": "Apply", "ApplyingCouponProgressTitle": "Applying Coupon Code", "ApplyingGiftCartProgressTitle": "Applying Gift Card %@", "AsGuestText": "as Guest", "AsLowAsExcludingTaxLabel": "As low as excl. tax", "AsLowAsIncludingTaxLabel": "As low as incl. tax", "AsLowAsLabel": "As low as", "AuthenticationToSocialClientFailedAlertMessage": "Authentication to %@ did failed...", "AverageRating": "Average Rating", "Back": "Back", "BackFromInfo": "Back", "BiggerThanMaxMessage": "The value should not be greater than %.2f!", "BillingAddressTitle": "Billing address", "BillingCheckout": "Billing", "BundleProductsSectionTitle": "Bundle Products", "BuyMoreAndSave": "Buy More & Save", "Cancel": "Cancel", "CancelButtonTitle": "Cancel", "CancelingPayPalMECLProgressTitle": "Canceling PayPal ...", "Cart": "Shopping Cart", "CartBtn": "Cart", "CartIsEmpty": "The cart is empty", "CartRegisteredMessage": "Offline cart stored on server", "CartRegisteredTitle": "", "CartRegistrationFailedMessage": "Storage of offline cart on server failed. Please retry later", "CartRegistrationFailedTitle": "Error", "CartUpdatedMessageTitle": "Cart Updated", "CheckGiftCardLabel": "Check Gift Card", "CheckingCartProgressTitle": "Checking Gift Card %@", "CheckoutAsGuestButtonTitle": "Checkout as Guest", "CheckoutButtonFullTitle": "Proceed to Checkout", "CheckoutButtonTitle": "Checkout", "CheckoutInitializationProgressTitle": "Checkout initialization...", "CheckoutInitializedText": "Checkout initialized!", "CheckoutTitle": "Checkout", "ChooseAmount": "Choose amount", "City": "City", "Clear": "Clear", "Close": "Close", "CommitCartChangesAlertText": "You have uncommitted actions. Commit?", "CommittingUpdatesProgressTitle": "Commiting updates...", "ConfigurationLoadingError": "There is an error in loading an app's configuration", "ConfigureTitle": "Select Options", "Connecting": "Connecting", "ConnectionErrorMessage": "Connection Error\\nWe're sorry. The app is experiencing connection problems. The app requires a network connection to operate.", "ConnectionLostMessage": "Connection Error\\nWe're sorry. The app is experiencing connection problems. The app requires a network connection to operate.", "ContactsAreEmpty": "ContactsAreEmpty", "Continue": "Continue", "Copyright": "Copyright: Magento (c) 2010", "Country": "Country", "CountrySelect": "Countries", "CreateAccount": "Create an Account", "CreateAccountButtonTitle": "Create Account", "CreateAccountLabel": "Create Account", "CreateAccountSectionHeader": "New to Our Store?", "CreateAnAccountLabel": "Create an Account", "CrossSellsText": "Cross Sells", "CrossellTitle": "You may also like", "CustomAmount": "Custom amount", "DateText": "Date", "DateTitle": "Date:", "Delete": "Delete", "DeleteItemMessage": "Are you sure you want to remove this item?", "DeleteRecordButtonTitle": "Delete", "Description": "Description", "DiscountButtonTitle": "Apply", "DiscountLabel": "Discount:", "DiscountTextFieldPlaceholder": "Enter discount code if any", "DiscoutnButtonTitle": "Apply", "DoneTitle": "Done", "DownloadableProductLinkSample": "Sample", "DownloadableProductsUpdatedMessage": "Downloadable Products Updated", "DownloadsLimitTitle": "Downloads limit:", "Edit": "Edit", "EditAccountButtonTitle": "Save", "EditAddressBookRecord": "Edit Address", "EditFilterTitle": "Edit filter", "EditMailList": "Edit Mail List", "EditNote": "Edit note", "Email": "E-mail", "EmailCopyLabel": "Cc:", "EmailCountMaxExceed": "Too many recipients have been set.  Max amount of recipients is:", "EmailLabel": "To:", "EmailThemeLabel": "Subject:", "EmptyCategoryMessage": "Sorry, there are no items in this category.", "EmptyDiscount": "Enter discount code first.", "EmptyDiscountCodeAlertMessage": "Discount code is empty", "EmptyEmails": "Please enter at least one email recipient", "EmptyGalleryMessage": "This product has no images.", "EmptyGiftCardValueMessage": "Please, specify gift card amount!", "EmptyMyDownloadableViewMessage": "List of downloadable products is empty", "EmptyStoreCreditHistoryMessage": "There is no store credit history!", "EmptyViewMessage": "There are no items here", "EmptyWishlistViewMessage": "Wishlist is empty.", "EnterEmailText": "Enter e-mail", "EnterGiftCardPromo": "Enter giftcard promo code here", "EnterNameText": "Enter Name", "EnterText": "Enter text", "Error": "Error", "ErrorEmailMessage1": "Email is not specified", "ErrorEmailMessage2": "Email is not correct", "ErrorLoadingConfigurationFormat": "Error Loading Configuration Format", "ErrorPasswordMessage1": "Password is not specified", "ErrorRetrievingData": "There is an error in retrieving the data. Please try again later", "ExcludingTaxLabel": "", "#C72D46": "#C72D46", "#C72D46PostFailedMessage": "#C72D46 post failed...", "#C72D46PostSuccess": "Successfully posted to #C72D46", "FieldRequiredToBeFilledDialogMessage": "The %s field should be filled.", "Filters": "Filters", "FixedAmounts": "Fixed amounts", "ForgotPassword": "Forgot Password", "ForgotPasswordButtonTitle": "Forgot Password?", "ForgotPasswordSectionHeader": "Forgot your password?", "Form": "Form", "FormCellTitle": "Form", "FromExcludingTaxLabel": "From excl. tax", "FromIncludingTaxLabel": "From incl. tax", "FullDescription": "Full Description", "FunctionalityIsDisabledInOfflineModeAlertMessage": "This functionality disabled in offline mode", "Gallery": "Gallery", "GetMoreElements": "Load more items", "GettingMoreElements": "Loading more items...", "GiftCardCodeCheck": "Check", "GiftCardCodeRedeem": "Redeem", "GiftCardPromo": "Giftcard promo code", "GiftCartRedeemedMessageText": "Check Gift Card Promo Redeemed", "Giftcards": "Enter the gift card code", "GuestLogInMessage": "Checkout as Guest or Register", "Home": "Home", "IAgree": "I Agree", "InStock": "In Stock", "IncludingTaxLabel": "Incl. tax", "IncorrectDecimalValueDialogMessage": "You have entered an incorrect decimal value in the custom amount field. Provide a valid value.", "InitializationPayPalMECLFailedMessage": "Initialization of the PayPal checkout failed!", "InitializationPayPalMECLProgressTitle": "Initialization PayPal ...", "InvalidEmailDialogMessage": "Email address you provided is not valid. Please provide a valid one.", "InvalidResponse": "The server responded with invalid data.", "Item": "Item", "ItemOptionsSectionTitle": "Item Options", "LastOrders": "My Orders", "LastUpdatePullDownText": "Last update: %@", "LessThatMinMessage": "The value should not be less than %.2f!", "LindedIn": "LindedIn", "LinkTitle": "Link:", "LinkedIn": "LinkedIn", "LinkedInAuthorization": "LinkedIn Authorization", "LinkedInAutorization": "LinkedIn Autorization", "LinkedInPostSuccess": "Successfully posted to Linkedin", "LinkedInTitle": "LinkedIn", "LinkedinPostFailedMessage": "Linkedin post failed...", "LoadingAccountFormProgressTitle": "Loading Account Form...", "LoadingAddressBookProgressTitle": "Loading Address Book...", "LoadingAddressFormProgressTitle": "Loading Address Form...", "LoadingCMSPageProgtessTitle": "Loading CMS page ...", "LoadingCartProgressTitle": "Loading Cart...", "LoadingCategoryProgressTitle": "Loading category ...", "LoadingDownloadableProductsProgressTitle": "Loading My Downloadable Products...", "LoadingGalleryProgressTitle": "Loading Gallery...", "LoadingLoginFormProgressTitle": "Loading Login Form...", "LoadingMoreItems": "", "LoadingOrderDetailsProgressTitle": "Loading Order Details", "LoadingOrdersListProgressTitle": "Loading Orders List...", "LoadingProductOptionsProgressTitle": "Loading Product Options...", "LoadingProductProgressTitle": "Loading product ...", "LoadingProductsProgressTitle": "Loading Products...", "LoadingProgressTitle": "Loading %@...", "LoadingRegistrationFormProgressTitle": "Loading Registration Form...", "LoadingRestorePasswordFormProgressTitle": "Loading Restore Password Form...", "LoadingShippindPayPalMECLProgressTitle": "Loading shipping methods ...", "LoadingStoreCreditProgressTitle": "Loading Store Credit...", "LoadingText": "Loading...", "LoadingWishListProgressTitle": "Loading WishList...", "LoadingWriteReviewFormProgressTitle": "Loading Write Review Form...", "LogIn": "Log In", "LogInButtonTitle": "Log into Account", "LogInEmailLabel": "Email", "LogInMessage": "You must login first", "LogInMessageTitle": "LogInMessageTitle", "LogInPasswordLabel": "Password", "LogInSectionHeader": "Log into your account", "LogOut": "Log Out", "LogOutButtonTitle": "Log out Account", "MailToText": "To:", "MaxLengthMessage": "The max length of the field \"%@\" is %d!", "Maximum": "Maximum: %.2f", "MergeButtonTitle": "Merge", "MessageText": "Message", "MessageTwitterTooLong": "Message too long, please use 140 symbols", "Minimize": "Minimize", "Minimum": "Minimum: %.2f", "MoreInfo": "More Info", "MyAccount": "My Account", "NameText": "Name", "NewAddressBookRecord": "Add New Address", "No": "No", "NoInternetConnectionAlertTitle": "No internet connection. Retry later ...", "NoLastOrders": "You have placed no orders.", "NoProductsFoundAlertTitle": "No products found. Please retry with other term", "NoProductsMatchingSelection": "", "NoSupportForOrderDetails": "Currently, the system does not support the viewing of the order detail.", "NotCorrectField": "%@ is not correct", "NotEmail": "The following email(s) are either mistyped or have incorrect format. Check them and try again:\\n", "NotLoggedInAlertMessage": "You are not logged in", "NotZeroCustomValueDialogMessage": "The custom amount value should be higher than 0.", "NothingSelected": "At least one option should be selected", "Notice": "Notice", "OK": "OK", "OpenAmountPriceBoundariesText": "Minimum %@, maximum %@", "Options": "Options", "OptionsTitle": "Options", "OrderCanceledAlertMessage": "You canceled your order. Touch \"Pay with PayPal\" to try again.", "OrderCanceledPayPalMECLMessage": "Order canceled", "OrderDetailsUpdatedMessage": "Order Details Updated", "OrderFailedAlertMessage": "Your order failed. Touch \"Pay with PayPal\" to try again.", "OrderFailedMessage": "Order failed", "OrderHeader": "Order #", "OrderIDTitle": "Order ID:", "OrderInfoTitle": "Order Info", "OrderListUpdatedMessage": "Order List Updated", "OrderNumberText": "Order Number", "OrderReviewCheckout": "Order Review", "OrderReviewScreenTitle": "Order Review", "OrderedItemsText": "Ordered Items", "OtherAmount": "Other amount", "OutOfStock": "Out of Stock", "ParsingError": "Error while reading remote data", "PasswordLength": "The minimum password length is 6", "PayPalCheckout": "PayPal Checkout", "PayPalText": "PayPal", "PaymentBridgeServiceErrorMessage": "Unknown Payment Bridge Error", "PaymentMethodSectionTitle": "Payment Method", "PaymentMethodSelectionWarning": "Please select payment method to cover a quote", "PaymentMethodTitle": "Payment method", "PaymentMethodsCheckout": "Payment Information", "PlaceOrder": "Place Order", "PlacingOrderProgressTitle": "Placing order ...", "PostToLinkedIn": "Share on LinkedIn", "PostToTwitter": "Share on Twitter", "PostToWallProduct": "Post this product to your wall", "PostingEmailProgressTitle": "Posting to e-mails", "Price": "Price", "PriceExcludingTax": "Price excluding tax", "PriceIncludingTax": "Price including tax", "Product": "Product", "ProductAddedAlertMessage": "Product succesfully added to cart", "ProductAddedAlertTitle": "Product added", "ProductAddedToCartLabelTitle": "Product Added to Cart", "ProductAddedToWishlistLabelTitle": "Product Added to Wishlist", "ProductGalleryUpdatedMessage": "Product Gallery Updated", "ProductOptionsUpdatedMessage": "Product Options Updated", "ProductOutOfStockAlertMessage": "Product is out of stock", "ProductOutOfStockAlertTitle": "", "ProductPaymentCompleteLabelTitle": "Success", "ProductPaymentCompleteleLabelTitle": "Success", "ProductRemovedFromWishlistLabelTitle": "Product Removed From Wishlist", "ProductReviewsUpdatedMessage": "Product Reviews Updated", "ProductUpdatedMessage": "Product Updated", "ProductsText": "Products", "PullDownToUpdatePullDownText": "Pull Down To Update..", "Qty": "Qty", "Quantity": "Quantity", "QuantityTitle": "Qty:", "RatingReviewsNone": "No Ratings", "RatingReviewsTitle": "Ratings and Reviews", "RecoverPasswordButtonTitle": "Recover", "RedemingGiftCartProgressTitle": "Redeeming Gift Card %@", "RegionFieldLabel": "State/Province", "RegionSelect": "Regions", "RegisterText": "Register", "RegisteringOfflineCartProgressTitle": "Registering cart ...", "RegisteringUserProgressTitle": "Registering user ...", "RegularLabel": "Regular", "RegularPriceLabel": "Unit Price:", "RelatedProductLabel": "You may also like", "ReleaseToUpdatePullDownText": "Release To Update...", "RemoveFromWishlistTitle": "Remove", "RemoveGiftCardLabel": "Remove", "RemoveText": "Remove", "RemovingAddressProgressTitle": "Remove Address...", "RemovingCouponProgressTitle": "Removing Coupon...", "RemovingGiftCartProgressTitle": "Removing Gift Card...", "RemovingProductFromWishListProgressTitle": "Removing Product from WishList...", "RemovingProgressTitle": "Removing %@...", "RemovingStoreCreditProgressTitle": "Removing Store Credit...", "RequiredFieldMessage": "field is required", "RequiredFieldTitle": "required", "RequiredLabel": "* - field is required", "Revert": "Revert", "RevertDiscountButtonTitle": "Revert Discount", "SamplesButtonTitle": "Samples", "Save": "Save", "SavingAddressProgressTitle": "Saving Address...", "SavingChangesProgressTitle": "Saving changes ...", "SavingMethodsProgressTitle": "Saving shipping methods ...", "SavingShippingAddressProgressTitle": "Saving shipping address ...", "Search": "Search", "SearchUpdatedMessage": "Search Updated", "SearchingProgressTitle": "Searching for %@...", "SeeAllText": "See all", "SelectA": "Select a", "SelectBillingAddressTitle": "Select a Billing Address", "SelectBillingMethodTitle": "Select a Billing Address", "SelectBillingMethodTitleNoAddress": "", "SelectBoxFormat": "Select %@", "SelectFromAddressBook": "Select from Address Book", "SelectLinks": "Select Links", "SelectOptions": "Select Options", "SelectPaymentMethod": "Select Payment Method", "SelectShippingAddressTitle": "Select a Shipping Address", "SelectShippingMethod": "Select shipping method", "SelectShippingMethodTitle": "Select a Shipping Address", "Send": "Send", "SendEmail": "Send", "SendEmailTitle": "Tell a Friend", "SendTitle": "Send", "SendingEmailFailedMessage": "Sending e-mail failed...", "SetEmailMessage": "Please set email", "SettedText": "Set", "ShakeToResetFilters": "Shake device to reset the filter", "Share": "Share", "ShareTitle": "Share", "ShippingAddressTitle": "Shipping address", "ShippingCheckout": "Shipping", "ShippingMethodTitle": "Shipping method", "ShippingMethodsCheckout": "Ship method", "Shop": "Shop", "ShopAll": "Shop All", "ShopUpdatedMessageTitle": "Shop Updated", "ShorteningUrlClientSideError": "The shortening service returned status code %d indicating a client side error.", "ShorteningUrlError": "Error during shortening url", "ShorteningUrlServerSideError": "The shortening service returned status code %d indicating a server side error.", "ShowPasswordLabelTitle": "Show Password", "SignIn": "Sign In", "SignOutProgressTitle": "Signing Out ...", "SigningInProgressTitle": "Signing In...", "Sku": "Product SKU", "SortByLabel": "SORT BY:", "SpecialExcludingTaxLabel": "Special", "SpecialIncludingTaxLabel": "Incl. tax", "SpecifyPaymentMethod": "Please specify payment method", "SpecifyShippingMethod": "Please specify shipping method", "StandardCheckout": "Standard Checkout", "StartingAtExcludingTaxLabel": "Starting at excl. tax", "StartingAtIncludingTaxLabel": "Starting at incl. tax", "StatusText": "Status", "StoreCredit": "Store credit", "StoreCreditBalanceHeader": "Balance", "StoreCreditInfoUpdatedMessage": "Store Credit Info Updated", "StrAddress": "Address", "SubmitReview": "Submit Review", "SubmittingReviewProgressTitle": "Submitting Review...", "Subtotal": "Subtotal", "SubtotalExcludingTax": "Subtotal excluding tax", "SubtotalExcludingTaxLabel": "Subtotal:", "SubtotalIncludingTax": "Subtotal including tax", "SubtotalIncludingTaxLabel": "Subtotal incl. tax:", "SubtotalRegularPriceLabel": "Subtotal:", "SuccessOrderID": "Order ID", "SwipeToRevealOptions": "Swipe a product to reveal more options", "Telephone": "Telephone", "TellAFriendButtonTitle": "Tell a Friend", "TellAFriendTitle": "Tell a Friend", "TermsAndConditions": "Terms And Conditions", "ThereAreNoItemsInYourCart": "There are no items in your cart", "ThereIsNoAddressesForThisContact": "There is no addresses for this contact", "ToExcludingTaxLabel": "To excl. tax", "ToHighCustomValueDialogMessage": "The custom amount value should not be higher than %s.", "ToIncludingTaxLabel": "To incl. tax", "ToLowCustomValueDialogMessage": "The custom amount value should not be lower than %s.", "TooBigValueMessage": "The value is too big!", "TooLongTextDialogMessage": "The length of the text in the %s field is too big. Please shorten the text.", "TotalsText": "Totals", "TouchAndHoldToDeleteProduct": "Touch and hold a product to delete from shopping cart", "TouchAndHoldToRevealOptions": "Touch and hold a product to reveal more options", "TryAgain": "Try Again", "Twitter": "Twitter", "TwitterAuthorization": "Twitter Authorization", "TwitterAutorization": "Twitter Autorization", "TwitterPostFailedMessage": "Twitter post failed...", "TwitterPostSuccess": "Your tweet has been sent. Thanks for sharing this product on Twitter", "TypeTitle": "Type", "URLOrCodeNotSet": "Either remote URL or application code was not set. Please make sure you filled all the values and try again.", "UnknownException": "Unknown error ocured. Please retry later", "UpdateCommentErrorMessage": "Update Comment Error", "UpdatingCartProgressTitle": "Updating Cart...", "UpdatingPullDownText": "Updating ...", "UseBillingAddress": "Use Billing Address", "UseBillingAddressForShipping": "Use billing address for shipping", "Version": "Version", "ViewCartButtonTitle": "View Cart", "ViewDetailsTitle": "View Details", "ViewGalleryTitle": "View Gallery", "ViewWishlistButtonTitle": "View Wishlist", "WaitTitle": "Please wait...", "WebStoreAvailableOnly": "Product only available on the website.", "WebsiteRestrictionEnabledMessage": "Website is offline", "WishListUpdatedMessage": "WishList Updated", "Wishlist": "My Wishlist", "WishlistPopupTitle": "Add To Wishlist", "WriteAReview": "Write a review", "WriteReviewTitle": "Write a Review", "WrongEmailFormat": "Wrong email format", "XMLConnectURL": "URL", "Yes": "Yes", "iPhoneAddressBookNavigationBarTitle": "Address Book", "labelPayWithCheckoutTitle": "OR, Pay with Standard Checkout", "qtyLabelTitle": "Quantity:", "buyNow": "Buy Now", "Categories": "Categories" };
     }
     Values.prototype.updateCart = function (crt) {
         this.cartItem = crt.cart_contents;
@@ -313,7 +318,7 @@ var Values = (function () {
         }
     };
     Values = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [])
     ], Values);
     return Values;
@@ -459,7 +464,7 @@ var SearchService = (function () {
         });
     };
     SearchService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_2__config__["a" /* Config */], __WEBPACK_IMPORTED_MODULE_4__values__["a" /* Values */]])
     ], SearchService);
     return SearchService;
@@ -469,7 +474,7 @@ var SearchService = (function () {
 
 /***/ }),
 
-/***/ 353:
+/***/ 354:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -477,7 +482,7 @@ var SearchService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
@@ -836,7 +841,7 @@ var CheckoutService = (function () {
         });
     };
     CheckoutService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_2__config__["a" /* Config */]])
     ], CheckoutService);
     return CheckoutService;
@@ -846,7 +851,7 @@ var CheckoutService = (function () {
 
 /***/ }),
 
-/***/ 354:
+/***/ 355:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -920,7 +925,7 @@ var WishlistService = (function () {
         });
     };
     WishlistService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_2__config__["a" /* Config */], __WEBPACK_IMPORTED_MODULE_3__values__["a" /* Values */]])
     ], WishlistService);
     return WishlistService;
@@ -930,7 +935,7 @@ var WishlistService = (function () {
 
 /***/ }),
 
-/***/ 356:
+/***/ 357:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1113,7 +1118,7 @@ var CartService = (function () {
         this.loader.dismiss();
     };
     CartService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__config__["a" /* Config */], __WEBPACK_IMPORTED_MODULE_4__values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* LoadingController */]])
     ], CartService);
     return CartService;
@@ -1123,7 +1128,7 @@ var CartService = (function () {
 
 /***/ }),
 
-/***/ 357:
+/***/ 358:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1270,7 +1275,7 @@ var ProductService = (function () {
         });
     };
     ProductService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_2__config__["a" /* Config */], __WEBPACK_IMPORTED_MODULE_3__values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["g" /* LoadingController */]])
     ], ProductService);
     return ProductService;
@@ -1280,7 +1285,7 @@ var ProductService = (function () {
 
 /***/ }),
 
-/***/ 358:
+/***/ 359:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1495,7 +1500,7 @@ var CategoryService = (function () {
         });
     };
     CategoryService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_2__config__["a" /* Config */], __WEBPACK_IMPORTED_MODULE_3__values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["g" /* LoadingController */]])
     ], CategoryService);
     return CategoryService;
@@ -1505,7 +1510,7 @@ var CategoryService = (function () {
 
 /***/ }),
 
-/***/ 359:
+/***/ 360:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1603,7 +1608,7 @@ var MyPopover = (function () {
         this.viewCtrl.dismiss();
     };
     MyPopover = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             template: "<ion-header><ion-toolbar color=\"shadow\"> <ion-title text-center>Filter</ion-title> <ion-buttons end> <button ion-button ligth class=\"has-icon icon-only has-badge\" (click)=\"close()\"> <ion-icon name=\"close\"></ion-icon> </button> </ion-buttons></ion-toolbar></ion-header><ion-content><div *ngIf=\"filters\"><div *ngIf=\"filters.item.length\"><div *ngFor=\"let item of filters.item; let i=index\"> <ion-item>{{item.name}}</ion-item> <div *ngIf=\"item.values.value.length\"> <ion-item *ngFor=\"let value of item.values.value; let j=index\"> <ion-label>{{value.label}}({{value.count}})</ion-label> <ion-checkbox [(ngModel)]=\"filters.item[i].values.value[j].selected\"></ion-checkbox> </ion-item> </div><ion-item *ngIf=\"!item.values.value.length\"> <ion-label>{{item.values.value.label}}({{item.values.value.count}})</ion-label> <ion-checkbox [(ngModel)]=\"filters.item[i].values.value.selected\"></ion-checkbox> </ion-item></div></div><div *ngIf=\"!filters.item.length\"> <ion-item>{{filters.item.name}}</ion-item> <div *ngIf=\"filters.item.values.value.length\"> <ion-item *ngFor=\"let value of filters.item.values.value; let j=index\"> <ion-label>{{value.label}}({{value.count}})</ion-label> <ion-checkbox [(ngModel)]=\"filters.item.values.value[j].selected\"></ion-checkbox> </ion-item> </div><ion-item *ngIf=\"!filters.item.values.value.length\"> <ion-label>{{filters.item.values.value.label}}({{filters.item.values.value.count}})</ion-label> <ion-checkbox [(ngModel)]=\"filters.item.values.value.selected\"></ion-checkbox> </ion-item></div></div></ion-content><ion-footer primary *ngIf=\"filters\"><ion-grid no-padding> <ion-row no-padding> <ion-col primary width-50 no-padding> <button ion-button full clear no-padding no-margin (click)=\"clearAll()\"> Clear </button> </ion-col> <ion-col royal width-50 no-padding> <button ion-button full clear color=\"shadow\" no-padding no-margin (click)=\"apply()\"> Apply </button> </ion-col> </ion-row></ion-grid></ion-footer>",
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */]])
@@ -1729,7 +1734,7 @@ var SearchPage = (function () {
         }
     };
     SearchPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\xampp\htdocs\ionic\boomDome\src\pages\search\search.html"*/'<ion-header no-border>\n  <ion-navbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu">\n      </ion-icon>\n    </button>\n    <ion-searchbar\n     [(ngModel)]="myInput"\n     [showCancelButton]="shouldShowCancel"\n     (ionInput)="onInput($event)"\n     (ionCancel)="onCancel($event)">\n    </ion-searchbar>\n  </ion-navbar>\n</ion-header>\n<ion-content class="search-page">\n\n    <ion-spinner *ngIf="loading" name="crescent">\n    </ion-spinner>\n\n    <div *ngIf="products" class="products-listing">\n\n    <div *ngIf="!products.length" class="no-products">\n    <h2>{{"No products found!" | translate}}</h2>\n    </div>\n\n      <div *ngIf="products.length">\n        <div *ngIf="values.listview">\n          <ion-item no-lines class="item-name">\n            <ion-label>{{"Search Results" | translate}}\n            </ion-label>\n            <button ion-button icon-only item-right clear color="button-color" (click)="setGridView()">\n              <ion-icon ios="ios-grid" md="md-grid">\n              </ion-icon>\n            </button>\n          </ion-item>\n\n            <div class="item-list" *ngFor="let item of products">\n              <ion-item class="left-padding" no-lines>\n                  <ion-thumbnail item-left class="stock-list">\n                    <img tappable (click)="getProduct(item.id)" src="{{item.images[0].src}}">\n                    <button class="no-stock-button" ion-button *ngIf="!item.in_stock">{{"No Stock" | translate}}\n                    </button>             \n                  </ion-thumbnail> \n\n                  <div class="product-name-top">                                 \n                  <div class="product-label">\n                  <div tappable (click)="getProduct(item.id)" class="max-lines">\n                      <h2 *ngIf="item.title">{{item.title}}\n                      </h2>\n                      <h2 *ngIf="item.name">{{item.name}}\n                      </h2>\n                  </div>\n                  </div>\n                  </div> \n\n                  <div>\n                    <span class="price-delete" *ngIf="item.sale_price">\n                    <del>{{1*item.regular_price | currency:values.currency:true:\'1.2-2\'}}\n                    </del>\n                    </span>\n                    <span class="price-regular" *ngIf="!item.sale_price">{{1*item.price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n                    <span class="price-regular" *ngIf="item.sale_price">{{1*item.sale_price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n                  </div>\n\n                   <h3 style="font-size:11px; margin: 3px 0">\n                   <span class="rating review-star">\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 1, half: item.average_rating == 0.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 2, half: item.average_rating == 1.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 3, half: item.average_rating == 2.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 4, half: item.average_rating == 3.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 5, half: item.average_rating == 4.5}">&#x2605;</span>\n                   </span>\n                   </h3>\n\n\n                <div class="bottom-right-button">\n                  <button ion-button [disabled]=\'!item.in_stock\' text-uppercase color="button-color"  item-right outline style="margin-right: 20px; border: 0; font-size: 14px" *ngIf="values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">\n                    {{"Add"  | translate}}\n                  </button>\n                  <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1" (click)="deleteFromCart(item.id)">\n                    <ion-icon name="md-remove">\n                    </ion-icon>\n                  </button>\n                  <button ion-button item-right color="button-color" clear style="border: 0;" *ngIf="values.cart[item.id] >= 1">{{values.cart[item.id]}}\n                  </button>\n                  <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1" (click)="updateToCart(item.id)">\n                    <ion-icon name="md-add">\n                    </ion-icon>\n                  </button>\n                </div>\n\n                  <div width-20 class="bottom-left-button">\n                  <ion-icon name="md-heart" class="wishlist-button-fill" *ngIf="values.wishlistId[item.id]" (click)="removeFromWishlist(item.id)"></ion-icon>\n                  <ion-icon name="md-heart-outline" class="wishlist-button" *ngIf="!values.wishlistId[item.id]" (click)="addToWishlist(item.id)"></ion-icon>\n                  </div>\n\n              </ion-item>\n            </div>\n        </div>\n\n\n        <div *ngIf="!values.listview">\n          <ion-item no-lines class="item-name">\n            <ion-label>{{"Search Results" | translate}}\n            </ion-label>\n            <button ion-button icon-only item-right clear color="button-color" (click)="setListView()">\n              <ion-icon ios="ios-list-box" md="ios-list-box">\n              </ion-icon>\n            </button>\n          </ion-item>\n          <div class="grid">\n            <ion-row class="row unlimited-items">\n              <ion-col class="col" *ngFor="let item of products">\n                <ion-card>\n                  <ion-card-content class="stock">\n\n                      <img tappable src="{{item.images[0].src}}" (click)="getProduct(item.id)">\n                      <button ion-button color="danger" *ngIf="!item.in_stock">{{"No stock" | translate}}\n                      </button>\n\n                  \n                  <ion-icon name="md-heart" class="wishlist-button-grid1" *ngIf="values.wishlistId[item.id]" (click)="removeFromWishlist(item.id)"></ion-icon>\n                  <ion-icon name="md-heart-outline" class="wishlist-button-grid2" *ngIf="!values.wishlistId[item.id]" (click)="addToWishlist(item.id)"></ion-icon>\n\n                  \n                  </ion-card-content>\n\n                  <div tappable (click)="getProduct(item.id)" class="card-name">\n                  <ion-label *ngIf="item.title">{{item.title}}\n                  </ion-label>\n                  <ion-label *ngIf="item.name">{{item.name}}\n                  </ion-label>\n                  </div>\n\n\n                   <h3 style="font-size:11px; margin: 3px 0">\n                   <span class="rating review-star">\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 1, half: item.average_rating == 0.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 2, half: item.average_rating == 1.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 3, half: item.average_rating == 2.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 4, half: item.average_rating == 3.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 5, half: item.average_rating == 4.5}">&#x2605;</span>\n                   </span>\n                   </h3>\n\n\n                  <ion-label>\n                     \n                    <span class="price-delete" *ngIf="item.sale_price">\n                    <del>{{1*item.regular_price | currency:values.currency:true:\'1.2-2\'}}\n                    </del>\n                    </span>\n                    <span class="price-regular" *ngIf="!item.sale_price">{{1*item.price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n                    <span class="price-regular" *ngIf="item.sale_price">{{1*item.sale_price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n                  </ion-label>\n                      \n\n                    <div class="add-remove-button">\n                    <button ion-button [disabled]=\'!item.in_stock\' text-uppercase color="button-color" item-right clear style="border: 0;" *ngIf="values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">\n                      {{"Add"  | translate}}\n                    </button>\n                    <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1" (click)="deleteFromCart(item.id)">\n                      <ion-icon name="md-remove">\n                      </ion-icon>\n                    </button>\n                    <button ion-button item-right color="button-color" style="border: 0; margin: 0 10px;" clear *ngIf="values.cart[item.id] >= 1">{{values.cart[item.id]}}\n                    </button>\n                    <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1" (click)="updateToCart(item.id)">\n                      <ion-icon name="md-add">\n                      </ion-icon>\n                    </button>\n                    </div>\n                    \n\n                </ion-card>\n              </ion-col>\n            </ion-row>\n          </div>\n        </div>\n      </div>\n      <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items">\n        <ion-infinite-scroll-content\n         loadingSpinner="crescent"\n         loadingText={{values.lan.GettingMoreElements}}>\n        </ion-infinite-scroll-content>\n      </ion-infinite-scroll>\n    </div>\n</ion-content>\n'/*ion-inline-end:"C:\xampp\htdocs\ionic\boomDome\src\pages\search\search.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\xampp\htdocs\ionic\boomDome\src\pages\search\search.html"*/'<ion-header no-border>\n  <ion-navbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu">\n      </ion-icon>\n    </button>\n    <ion-searchbar\n     [(ngModel)]="myInput"\n     [showCancelButton]="shouldShowCancel"\n     (ionInput)="onInput($event)"\n     (ionCancel)="onCancel($event)">\n    </ion-searchbar>\n  </ion-navbar>\n</ion-header>\n<ion-content class="search-page">\n\n    <ion-spinner *ngIf="loading" name="crescent">\n    </ion-spinner>\n\n    <div *ngIf="products" class="products-listing">\n\n    <div *ngIf="!products.length" class="no-products">\n    <h2>{{"No products found!" | translate}}</h2>\n    </div>\n\n      <div *ngIf="products.length">\n        <div *ngIf="values.listview">\n          <ion-item no-lines class="item-name">\n            <ion-label>{{"Search Results" | translate}}\n            </ion-label>\n            <button ion-button icon-only item-right clear color="button-color" (click)="setGridView()">\n              <ion-icon ios="ios-grid" md="md-grid">\n              </ion-icon>\n            </button>\n          </ion-item>\n\n            <div class="item-list" *ngFor="let item of products">\n              <ion-item class="left-padding" no-lines>\n                  <ion-thumbnail item-left class="stock-list">\n                    <img tappable (click)="getProduct(item.id)" src="{{item.images[0].src}}">\n                    <button class="no-stock-button" ion-button *ngIf="!item.in_stock">{{"No Stock" | translate}}\n                    </button>             \n                  </ion-thumbnail> \n\n                  <div class="product-name-top">                                 \n                  <div class="product-label">\n                  <div tappable (click)="getProduct(item.id)" class="max-lines">\n                      <h2 *ngIf="item.title">{{item.title}}\n                      </h2>\n                      <h2 *ngIf="item.name">{{item.name}}\n                      </h2>\n                  </div>\n                  </div>\n                  </div> \n\n                  <div>\n                    <span class="price-delete" *ngIf="item.sale_price">\n                    <del>{{1*item.regular_price | currency:values.currency:true:\'1.2-2\'}}\n                    </del>\n                    </span>\n                    <span class="price-regular" *ngIf="!item.sale_price">{{1*item.price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n                    <span class="price-regular" *ngIf="item.sale_price">{{1*item.sale_price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n                  </div>\n\n                   <h3 style="font-size:11px; margin: 3px 0">\n                   <span class="rating review-star">\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 1, half: item.average_rating == 0.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 2, half: item.average_rating == 1.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 3, half: item.average_rating == 2.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 4, half: item.average_rating == 3.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 5, half: item.average_rating == 4.5}">&#x2605;</span>\n                   </span>\n                   </h3>\n\n\n                <div class="bottom-right-button">\n                  <button ion-button [disabled]=\'!item.in_stock\' text-uppercase color="button-color"  item-right outline style="margin-right: 20px; border: 0; font-size: 14px" *ngIf="values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">\n                    {{"Add"  | translate}}\n                  </button>\n                  <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1" (click)="deleteFromCart(item.id)">\n                    <ion-icon name="md-remove">\n                    </ion-icon>\n                  </button>\n                  <button ion-button item-right color="button-color" clear style="border: 0;" *ngIf="values.cart[item.id] >= 1">{{values.cart[item.id]}}\n                  </button>\n                  <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1" (click)="updateToCart(item.id)">\n                    <ion-icon name="md-add">\n                    </ion-icon>\n                  </button>\n                </div>\n\n                  <div width-20 class="bottom-left-button">\n                  <ion-icon name="md-heart" class="wishlist-button-fill" *ngIf="values.wishlistId[item.id]" (click)="removeFromWishlist(item.id)"></ion-icon>\n                  <ion-icon name="md-heart-outline" class="wishlist-button" *ngIf="!values.wishlistId[item.id]" (click)="addToWishlist(item.id)"></ion-icon>\n                  </div>\n\n              </ion-item>\n            </div>\n        </div>\n\n\n        <div *ngIf="!values.listview">\n          <ion-item no-lines class="item-name">\n            <ion-label>{{"Search Results" | translate}}\n            </ion-label>\n            <button ion-button icon-only item-right clear color="button-color" (click)="setListView()">\n              <ion-icon ios="ios-list-box" md="ios-list-box">\n              </ion-icon>\n            </button>\n          </ion-item>\n          <div class="grid">\n            <ion-row class="row unlimited-items">\n              <ion-col class="col" *ngFor="let item of products">\n                <ion-card>\n                  <ion-card-content class="stock">\n\n                      <img tappable src="{{item.images[0].src}}" (click)="getProduct(item.id)">\n                      <button ion-button color="danger" *ngIf="!item.in_stock">{{"No stock" | translate}}\n                      </button>\n\n                  \n                  <ion-icon name="md-heart" class="wishlist-button-grid1" *ngIf="values.wishlistId[item.id]" (click)="removeFromWishlist(item.id)"></ion-icon>\n                  <ion-icon name="md-heart-outline" class="wishlist-button-grid2" *ngIf="!values.wishlistId[item.id]" (click)="addToWishlist(item.id)"></ion-icon>\n\n                  \n                  </ion-card-content>\n\n                  <div tappable (click)="getProduct(item.id)" class="card-name">\n                  <ion-label *ngIf="item.title">{{item.title}}\n                  </ion-label>\n                  <ion-label *ngIf="item.name">{{item.name}}\n                  </ion-label>\n                  </div>\n\n\n                   <h3 style="font-size:11px; margin: 3px 0">\n                   <span class="rating review-star">\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 1, half: item.average_rating == 0.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 2, half: item.average_rating == 1.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 3, half: item.average_rating == 2.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 4, half: item.average_rating == 3.5}">&#x2605;</span>\n                   <span class="star-icon" [ngClass]="{full: item.average_rating >= 5, half: item.average_rating == 4.5}">&#x2605;</span>\n                   </span>\n                   </h3>\n\n\n                  <ion-label>\n                     \n                    <span class="price-delete" *ngIf="item.sale_price">\n                    <del>{{1*item.regular_price | currency:values.currency:true:\'1.2-2\'}}\n                    </del>\n                    </span>\n                    <span class="price-regular" *ngIf="!item.sale_price">{{1*item.price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n                    <span class="price-regular" *ngIf="item.sale_price">{{1*item.sale_price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n                  </ion-label>\n                      \n\n                    <div class="add-remove-button">\n                    <button ion-button [disabled]=\'!item.in_stock\' text-uppercase color="button-color" item-right clear style="border: 0;" *ngIf="values.cart[item.id] == undefined || values.cart[item.id] == 0" (click)="addToCart(item.id, item.type)">\n                      {{"Add"  | translate}}\n                    </button>\n                    <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1" (click)="deleteFromCart(item.id)">\n                      <ion-icon name="md-remove">\n                      </ion-icon>\n                    </button>\n                    <button ion-button item-right color="button-color" style="border: 0; margin: 0 10px;" clear *ngIf="values.cart[item.id] >= 1">{{values.cart[item.id]}}\n                    </button>\n                    <button ion-button icon-only item-right clear color="button-color" *ngIf="values.cart[item.id] >= 1" (click)="updateToCart(item.id)">\n                      <ion-icon name="md-add">\n                      </ion-icon>\n                    </button>\n                    </div>\n                    \n\n                </ion-card>\n              </ion-col>\n            </ion-row>\n          </div>\n        </div>\n      </div>\n      <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items">\n        <ion-infinite-scroll-content\n         loadingSpinner="crescent"\n         loadingText={{values.lan.GettingMoreElements}}>\n        </ion-infinite-scroll-content>\n      </ion-infinite-scroll>\n    </div>\n</ion-content>\n'/*ion-inline-end:"C:\xampp\htdocs\ionic\boomDome\src\pages\search\search.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_2__providers_service_search_service__["a" /* SearchService */], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__providers_service_functions__["a" /* Functions */]])
     ], SearchPage);
@@ -1740,13 +1745,13 @@ var SearchPage = (function () {
 
 /***/ }),
 
-/***/ 360:
+/***/ 361:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(366);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1754,7 +1759,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 365:
+/***/ 366:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1762,30 +1767,30 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__(685);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__(686);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_search_search__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_search_search__ = __webpack_require__(360);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(351);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(356);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_native_storage__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_service_cart_service__ = __webpack_require__(356);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_service_wishlist_service__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_service_category_service__ = __webpack_require__(358);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_service_checkout_service__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_service_config__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_service_functions__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_service_product_service__ = __webpack_require__(357);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_service_search_service__ = __webpack_require__(311);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_service_service__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_service_values__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_common_http__ = __webpack_require__(686);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_http__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ngx_translate_core__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ngx_translate_http_loader__ = __webpack_require__(687);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__ionic_native_facebook__ = __webpack_require__(689);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__ionic_native_google_plus__ = __webpack_require__(690);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ng2_imageupload__ = __webpack_require__(687);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ng2_imageupload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_ng2_imageupload__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_service_cart_service__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_service_wishlist_service__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_service_category_service__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_service_checkout_service__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_service_config__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_service_functions__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_service_product_service__ = __webpack_require__(358);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_service_search_service__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_service_service__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_service_values__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_common_http__ = __webpack_require__(690);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__angular_http__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ngx_translate_core__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__ngx_translate_http_loader__ = __webpack_require__(691);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1818,15 +1823,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
+// import { Facebook } from '@ionic-native/facebook';
+// import { GooglePlus } from '@ionic-native/google-plus';
 function createTranslateLoader(http) {
-    return new __WEBPACK_IMPORTED_MODULE_23__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, './assets/i18n/', '.json');
+    return new __WEBPACK_IMPORTED_MODULE_24__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, './assets/i18n/', '.json');
 }
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* MyApp */],
                 __WEBPACK_IMPORTED_MODULE_3__pages_home_home__["a" /* Home */],
@@ -1834,8 +1840,9 @@ var AppModule = (function () {
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_20__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_21__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_10_ng2_imageupload__["ImageUploadModule"],
+                __WEBPACK_IMPORTED_MODULE_21__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_22__angular_http__["c" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/account/address/address.module#AddressModule', name: 'Address', segment: 'address', priority: 'low', defaultHistory: [] },
@@ -1848,20 +1855,21 @@ var AppModule = (function () {
                         { loadChildren: '../pages/account/wishlist/wishlist.module#WishlistPageModule', name: 'WishlistPage', segment: 'wishlist', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-product/add-product.module#AddProductModule', name: 'AddProduct', segment: 'add-product', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/checkout/billing-address-form/billing-address-form.module#BillingAddressFormModule', name: 'BillingAddressForm', segment: 'billing-address-form', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/checkout/order-summary/order-summary.module#OrderSummaryModule', name: 'OrderSummary', segment: 'order-summary', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cart/cart.module#CartPageModule', name: 'CartPage', segment: 'cart', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/checkout/order-summary/order-summary.module#OrderSummaryModule', name: 'OrderSummary', segment: 'order-summary', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/checkout/terms-condition/terms-condition.module#TermsConditionModule', name: 'TermsCondition', segment: 'terms-condition', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/edit-product/edit-product.module#EditProductModule', name: 'EditProductP', segment: 'edit-product', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomeModule', name: 'Home', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/product/product.module#ProductPageModule', name: 'ProductPage', segment: 'product', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/products/products.module#ProductsPageModule', name: 'ProductsPage', segment: 'products', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/search/search.module#SearchPageModule', name: 'SearchPage', segment: 'search', priority: 'low', defaultHistory: [] }
                     ]
                 }),
-                __WEBPACK_IMPORTED_MODULE_22__ngx_translate_core__["b" /* TranslateModule */].forRoot({
+                __WEBPACK_IMPORTED_MODULE_23__ngx_translate_core__["b" /* TranslateModule */].forRoot({
                     loader: {
-                        provide: __WEBPACK_IMPORTED_MODULE_22__ngx_translate_core__["a" /* TranslateLoader */],
+                        provide: __WEBPACK_IMPORTED_MODULE_23__ngx_translate_core__["a" /* TranslateLoader */],
                         useFactory: (createTranslateLoader),
-                        deps: [__WEBPACK_IMPORTED_MODULE_20__angular_common_http__["a" /* HttpClient */]]
+                        deps: [__WEBPACK_IMPORTED_MODULE_21__angular_common_http__["a" /* HttpClient */]]
                     }
                 })
             ],
@@ -1872,23 +1880,23 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_4__pages_search_search__["a" /* MyPopover */],
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_10__providers_service_cart_service__["a" /* CartService */],
-                __WEBPACK_IMPORTED_MODULE_11__providers_service_wishlist_service__["a" /* WishlistService */],
-                __WEBPACK_IMPORTED_MODULE_12__providers_service_category_service__["a" /* CategoryService */],
-                __WEBPACK_IMPORTED_MODULE_13__providers_service_checkout_service__["a" /* CheckoutService */],
-                __WEBPACK_IMPORTED_MODULE_14__providers_service_config__["a" /* Config */],
-                __WEBPACK_IMPORTED_MODULE_15__providers_service_functions__["a" /* Functions */],
-                __WEBPACK_IMPORTED_MODULE_16__providers_service_product_service__["a" /* ProductService */],
-                __WEBPACK_IMPORTED_MODULE_17__providers_service_search_service__["a" /* SearchService */],
-                __WEBPACK_IMPORTED_MODULE_18__providers_service_service__["a" /* Service */],
-                __WEBPACK_IMPORTED_MODULE_19__providers_service_values__["a" /* Values */],
-                __WEBPACK_IMPORTED_MODULE_24__ionic_native_facebook__["a" /* Facebook */],
-                __WEBPACK_IMPORTED_MODULE_25__ionic_native_google_plus__["a" /* GooglePlus */],
+                __WEBPACK_IMPORTED_MODULE_11__providers_service_cart_service__["a" /* CartService */],
+                __WEBPACK_IMPORTED_MODULE_12__providers_service_wishlist_service__["a" /* WishlistService */],
+                __WEBPACK_IMPORTED_MODULE_13__providers_service_category_service__["a" /* CategoryService */],
+                __WEBPACK_IMPORTED_MODULE_14__providers_service_checkout_service__["a" /* CheckoutService */],
+                __WEBPACK_IMPORTED_MODULE_15__providers_service_config__["a" /* Config */],
+                __WEBPACK_IMPORTED_MODULE_16__providers_service_functions__["a" /* Functions */],
+                __WEBPACK_IMPORTED_MODULE_17__providers_service_product_service__["a" /* ProductService */],
+                __WEBPACK_IMPORTED_MODULE_18__providers_service_search_service__["a" /* SearchService */],
+                __WEBPACK_IMPORTED_MODULE_19__providers_service_service__["a" /* Service */],
+                __WEBPACK_IMPORTED_MODULE_20__providers_service_values__["a" /* Values */],
+                // Facebook,
+                // GooglePlus,
                 __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__["a" /* StatusBar */],
                 __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__["a" /* SplashScreen */],
                 __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */],
                 __WEBPACK_IMPORTED_MODULE_8__ionic_native_native_storage__["a" /* NativeStorage */],
-                { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicErrorHandler */] }
+                { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicErrorHandler */] }
             ]
         })
     ], AppModule);
@@ -1983,7 +1991,7 @@ var Config = (function () {
         }
     };
     Config = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [])
     ], Config);
     return Config;
@@ -1993,7 +2001,7 @@ var Config = (function () {
 
 /***/ }),
 
-/***/ 685:
+/***/ 686:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2088,11 +2096,11 @@ var MyApp = (function () {
         this.showCategories = false;
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */]),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */]),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\xampp\htdocs\ionic\boomDome\src\app\app.html"*/'<ion-menu [content]="content" *ngIf="values.dir == \'right\'" side="right" type="reveal">\n\n\n\n<div class="menu-toolbar">\n\n  <ion-toolbar color="header">\n\n    <div class="profile-image">\n\n      <img src="{{values.avatar}}">\n\n    </div>\n\n    \n\n    <button ion-button full menuClose clear class="button-customername" *ngIf="values.isLoggedIn">\n\n      {{values.customerName}}\n\n    </button>\n\n      \n\n    <button ion-button full menuClose clear class="button-welcome" *ngIf="!values.isLoggedIn">\n\n      {{"Welcome" | translate}}\n\n    </button>  \n\n  </ion-toolbar>\n\n  </div>\n\n\n\n  <ion-content class="sidemenugrad">\n\n\n\n      <ion-item-divider tappable menuClose (click)="shop()">\n\n          <ion-icon item-left ios="ios-home" md="md-home"></ion-icon>\n\n          {{"Home" | translate}}\n\n      </ion-item-divider>\n\n\n\n\n\n    <!-- <ion-list no-margin> -->\n\n<!-- <div class="list-item-divider"> -->\n\n      <!-- <ion-item-divider tappable *ngIf="!showCategories" (click)="dropDown()"> -->\n\n          <!-- <ion-icon item-left name="logo-buffer" style="margin-top: 12px"></ion-icon> -->\n\n          <!-- {{"Categories" | translate}} -->\n\n          <!-- <ion-icon name="md-arrow-dropdown" class="drop-icon" (click)="dropDown()"></ion-icon> -->\n\n      <!-- </ion-item-divider> -->\n\n      <!-- <ion-item-divider tappable *ngIf="showCategories" (click)="dropup()"> -->\n\n          <!-- <ion-icon item-left name="logo-buffer" style="margin-top: 12px"></ion-icon> -->\n\n          <!-- {{"Categories" | translate}} -->\n\n          <!-- <ion-icon name="md-arrow-dropup" class="drop-icon" (click)="dropup()"></ion-icon> -->\n\n      <!-- </ion-item-divider> -->\n\n<!-- </div>  -->\n\n      \n\n      <!-- <div *ngIf="showCategories">       -->\n\n      <!-- <div *ngIf="service.categories" class="category-name"> -->\n\n        <!-- <ion-item tappable full menuClose *ngFor="let item of service.mainCategories" (click)="getCategory(item.id, item.slug, item.name)"> -->\n\n          <!-- <ion-icon item-right hideWhen="ios" class="ion-ios-arrow-forward item-icon"> -->\n\n          <!-- </ion-icon> -->\n\n          <!-- {{item.name}}          -->\n\n        <!-- </ion-item> -->\n\n      <!-- </div> -->\n\n      <!-- </div> -->\n\n    <!-- </ion-list> -->\n\n\n\n    \n\n    <ion-list>\n\n		  <ion-item tappable menuClose (click)="login()" *ngIf="!values.isLoggedIn">\n\n			  <ion-icon name="md-log-in" item-left></ion-icon>{{"LogIn" | translate}}\n\n		  </ion-item>\n\n		  <ion-item tappable menuClose (click)="address()" *ngIf="!values.isLoggedIn">\n\n			  <ion-icon item-left ios="md-locate" md="md-locate">\n\n			  </ion-icon>{{"Product List" | translate}}\n\n		  </ion-item>\n\n		  <ion-item tappable menuClose (click)="order()" *ngIf="!values.isLoggedIn">\n\n			  <ion-icon item-left ios="md-reorder" md="md-reorder">\n\n			  </ion-icon>{{"Orders" | translate}}\n\n		  </ion-item>\n\n		<ion-item tappable menuClose (click)="wishlist()" *ngIf="!values.isLoggedIn">\n\n			  <ion-icon name="md-heart" item-left></ion-icon>{{"Wishlist | translate"}}\n\n		</ion-item>		\n\n		<ion-item tappable menuClose (click)="logout()" *ngIf="values.isLoggedIn">\n\n			<ion-icon item-left name="md-log-out">\n\n			</ion-icon>{{"Logout" | translate}}\n\n		</ion-item>\n\n    </ion-list>\n\n \n\n    <br>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n\n\n\n\n\n\n\n\n<ion-menu [content]="content" *ngIf="values.dir == \'left\'" side="left" type="reveal">\n\n\n\n<div class="menu-toolbar">\n\n  <ion-toolbar color="header">\n\n    <div class="profile-image">\n\n      <img src="{{values.avatar}}">\n\n    </div>\n\n    \n\n    <button ion-button full menuClose clear class="button-customername" *ngIf="values.isLoggedIn">\n\n      {{values.customerName}}\n\n    </button>\n\n      \n\n    <button ion-button full menuClose clear class="button-welcome" *ngIf="!values.isLoggedIn">\n\n      {{"Welcome" | translate}}\n\n    </button>  \n\n  </ion-toolbar>\n\n  </div>\n\n\n\n  <ion-content class="sidemenugrad">\n\n\n\n    <ion-item-divider tappable menuClose (click)="shop()">\n\n        <ion-icon item-left ios="ios-home" md="md-home"></ion-icon>\n\n		{{"Home" | translate}}\n\n    </ion-item-divider>\n\n    <ion-list>\n\n		\n\n		<ion-item tappable menuClose (click)="login()" *ngIf="!values.isLoggedIn">\n\n			<ion-icon name="md-log-in" item-left></ion-icon>{{"LogIn" | translate}}\n\n		</ion-item>\n\n		<ion-item tappable menuClose (click)="account()" *ngIf="values.isLoggedIn">\n\n			<ion-icon item-left ios="ios-contacts" md="md-contacts">\n\n			</ion-icon>{{"Profile" | translate}}\n\n		</ion-item>\n\n		<ion-item tappable menuClose (click)="order()" *ngIf="values.isLoggedIn">\n\n			<ion-icon item-left ios="md-reorder" md="md-reorder">\n\n			</ion-icon>{{"Orders" | translate}}\n\n		</ion-item>\n\n		<div class="list-item-divider" *ngIf="values.isLoggedIn">\n\n			  <ion-item-divider tappable *ngIf="!showCategories" (click)="dropDown()">\n\n				  <ion-icon item-left  ios="ios-construct" md="md-construct" style="margin-top: 12px"></ion-icon>\n\n				  {{"Manage Products" | translate}}\n\n				  <ion-icon name="md-arrow-dropdown" class="drop-icon" (click)="dropDown()"></ion-icon>\n\n			  </ion-item-divider>\n\n			  <ion-item-divider tappable *ngIf="showCategories" (click)="dropup()">\n\n				  <ion-icon item-left ios="ios-construct" md="md-construct" style="margin-top: 12px"></ion-icon>\n\n				  {{"Manage Products" | translate}}\n\n				  <ion-icon name="md-arrow-dropup" class="drop-icon" (click)="dropup()"></ion-icon>\n\n			  </ion-item-divider>\n\n		</div> \n\n		<div *ngIf="showCategories && values.isLoggedIn" >       \n\n			<div  class="category-name">\n\n				<ion-item tappable full menuClose (click)="products()">\n\n					<ion-icon item-right hideWhen="ios" class="ion-ios-arrow-forward item-icon"></ion-icon>Product List         \n\n				</ion-item>\n\n				<ion-item tappable full menuClose (click)="addProduct()">\n\n					<ion-icon item-right hideWhen="ios" class="ion-ios-arrow-forward item-icon"></ion-icon>Add New Product         \n\n				</ion-item>\n\n			</div>\n\n		</div>\n\n		<ion-item tappable menuClose (click)="logout()" *ngIf="values.isLoggedIn">\n\n			<ion-icon item-left name="md-log-out">\n\n			</ion-icon>{{"Logout" | translate}}\n\n		</ion-item>\n\n   \n\n    </ion-list>  \n\n	\n\n \n\n    <br>\n\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false">\n\n</ion-nav>\n\n'/*ion-inline-end:"C:\xampp\htdocs\ionic\boomDome\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\xampp\htdocs\ionic\boomDome\src\app\app.html"*/'<ion-menu [content]="content" *ngIf="values.dir == \'right\'" side="right" type="reveal">\n\n\n\n<div class="menu-toolbar">\n\n  <ion-toolbar color="header">\n\n    <div class="profile-image">\n\n      <img src="{{values.avatar}}">\n\n    </div>\n\n    \n\n    <button ion-button full menuClose clear class="button-customername" *ngIf="values.isLoggedIn">\n\n      {{values.customerName}}\n\n    </button>\n\n      \n\n    <button ion-button full menuClose clear class="button-welcome" *ngIf="!values.isLoggedIn">\n\n      {{"Welcome" | translate}}\n\n    </button>  \n\n  </ion-toolbar>\n\n  </div>\n\n\n\n  <ion-content class="sidemenugrad">\n\n\n\n      <ion-item-divider tappable menuClose (click)="shop()">\n\n          <ion-icon item-left ios="ios-home" md="md-home"></ion-icon>\n\n          {{"Home" | translate}}\n\n      </ion-item-divider>\n\n\n\n\n\n    <!-- <ion-list no-margin> -->\n\n<!-- <div class="list-item-divider"> -->\n\n      <!-- <ion-item-divider tappable *ngIf="!showCategories" (click)="dropDown()"> -->\n\n          <!-- <ion-icon item-left name="logo-buffer" style="margin-top: 12px"></ion-icon> -->\n\n          <!-- {{"Categories" | translate}} -->\n\n          <!-- <ion-icon name="md-arrow-dropdown" class="drop-icon" (click)="dropDown()"></ion-icon> -->\n\n      <!-- </ion-item-divider> -->\n\n      <!-- <ion-item-divider tappable *ngIf="showCategories" (click)="dropup()"> -->\n\n          <!-- <ion-icon item-left name="logo-buffer" style="margin-top: 12px"></ion-icon> -->\n\n          <!-- {{"Categories" | translate}} -->\n\n          <!-- <ion-icon name="md-arrow-dropup" class="drop-icon" (click)="dropup()"></ion-icon> -->\n\n      <!-- </ion-item-divider> -->\n\n<!-- </div>  -->\n\n      \n\n      <!-- <div *ngIf="showCategories">       -->\n\n      <!-- <div *ngIf="service.categories" class="category-name"> -->\n\n        <!-- <ion-item tappable full menuClose *ngFor="let item of service.mainCategories" (click)="getCategory(item.id, item.slug, item.name)"> -->\n\n          <!-- <ion-icon item-right hideWhen="ios" class="ion-ios-arrow-forward item-icon"> -->\n\n          <!-- </ion-icon> -->\n\n          <!-- {{item.name}}          -->\n\n        <!-- </ion-item> -->\n\n      <!-- </div> -->\n\n      <!-- </div> -->\n\n    <!-- </ion-list> -->\n\n\n\n    \n\n    <ion-list>\n\n		  <ion-item tappable menuClose (click)="login()" *ngIf="!values.isLoggedIn">\n\n			  <ion-icon name="md-log-in" item-left></ion-icon>{{"LogIn" | translate}}\n\n		  </ion-item>\n\n		  <ion-item tappable menuClose (click)="address()" *ngIf="!values.isLoggedIn">\n\n			  <ion-icon item-left ios="md-locate" md="md-locate">\n\n			  </ion-icon>{{"Product List" | translate}}\n\n		  </ion-item>\n\n		  <ion-item tappable menuClose (click)="order()" *ngIf="!values.isLoggedIn">\n\n			  <ion-icon item-left ios="md-reorder" md="md-reorder">\n\n			  </ion-icon>{{"Orders" | translate}}\n\n		  </ion-item>\n\n		<ion-item tappable menuClose (click)="wishlist()" *ngIf="!values.isLoggedIn">\n\n			  <ion-icon name="md-heart" item-left></ion-icon>{{"Wishlist | translate"}}\n\n		</ion-item>		\n\n		<ion-item tappable menuClose (click)="logout()" *ngIf="values.isLoggedIn">\n\n			<ion-icon item-left name="md-log-out">\n\n			</ion-icon>{{"Logout" | translate}}\n\n		</ion-item>\n\n    </ion-list>\n\n \n\n    <br>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n\n\n\n\n\n\n\n\n<ion-menu [content]="content" *ngIf="values.dir == \'left\'" side="left" type="reveal">\n\n\n\n<div class="menu-toolbar">\n\n  <ion-toolbar color="header">\n\n    <div class="profile-image">\n\n      <img src="{{values.avatar}}">\n\n    </div>\n\n    \n\n    <button ion-button full menuClose clear class="button-customername" *ngIf="values.isLoggedIn">\n\n      {{values.customerName}}\n\n    </button>\n\n      \n\n    <button ion-button full menuClose clear class="button-welcome" *ngIf="!values.isLoggedIn">\n\n      {{"Welcome" | translate}}\n\n    </button>  \n\n  </ion-toolbar>\n\n  </div>\n\n\n\n  <ion-content class="sidemenugrad">\n\n\n\n    <ion-item-divider tappable menuClose (click)="shop()">\n\n        <ion-icon item-left ios="ios-home" md="md-home"></ion-icon>\n\n		{{"Home" | translate}}\n\n    </ion-item-divider>\n\n    <ion-list>\n\n		\n\n		<ion-item tappable menuClose (click)="login()" *ngIf="!values.isLoggedIn">\n\n			<ion-icon name="md-log-in" item-left></ion-icon>{{"LogIn" | translate}}\n\n		</ion-item>\n\n		<ion-item tappable menuClose (click)="account()" *ngIf="!values.isLoggedIn">\n\n			<ion-icon item-left ios="ios-contacts" md="md-contacts">\n\n			</ion-icon>{{"Profile" | translate}}\n\n		</ion-item>\n\n		<ion-item tappable menuClose (click)="order()" *ngIf="!values.isLoggedIn">\n\n			<ion-icon item-left ios="md-reorder" md="md-reorder">\n\n			</ion-icon>{{"Orders" | translate}}\n\n		</ion-item>\n\n		<div class="list-item-divider" *ngIf="!values.isLoggedIn">\n\n			  <ion-item-divider tappable *ngIf="!showCategories" (click)="dropDown()">\n\n				  <ion-icon item-left  ios="ios-construct" md="md-construct" style="margin-top: 12px"></ion-icon>\n\n				  {{"Manage Products" | translate}}\n\n				  <ion-icon name="md-arrow-dropdown" class="drop-icon" (click)="dropDown()"></ion-icon>\n\n			  </ion-item-divider>\n\n			  <ion-item-divider tappable *ngIf="showCategories" (click)="dropup()">\n\n				  <ion-icon item-left ios="ios-construct" md="md-construct" style="margin-top: 12px"></ion-icon>\n\n				  {{"Manage Products" | translate}}\n\n				  <ion-icon name="md-arrow-dropup" class="drop-icon" (click)="dropup()"></ion-icon>\n\n			  </ion-item-divider>\n\n		</div> \n\n		<div *ngIf="showCategories && !values.isLoggedIn" >       \n\n			<div  class="category-name">\n\n				<ion-item tappable full menuClose (click)="products()">\n\n					<ion-icon item-right hideWhen="ios" class="ion-ios-arrow-forward item-icon"></ion-icon>Product List         \n\n				</ion-item>\n\n				<ion-item tappable full menuClose (click)="addProduct()">\n\n					<ion-icon item-right hideWhen="ios" class="ion-ios-arrow-forward item-icon"></ion-icon>Add New Product         \n\n				</ion-item>\n\n			</div>\n\n		</div>\n\n		<ion-item tappable menuClose (click)="logout()" *ngIf="!values.isLoggedIn">\n\n			<ion-icon item-left name="md-log-out">\n\n			</ion-icon>{{"Logout" | translate}}\n\n		</ion-item>\n\n   \n\n    </ion-list>  \n\n	\n\n \n\n    <br>\n\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false">\n\n</ion-nav>\n\n'/*ion-inline-end:"C:\xampp\htdocs\ionic\boomDome\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */], __WEBPACK_IMPORTED_MODULE_5__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_6__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__["c" /* TranslateService */]])
     ], MyApp);
@@ -2147,7 +2155,7 @@ var Functions = (function () {
         this.loader.dismiss();
     };
     Functions = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__values__["a" /* Values */]])
     ], Functions);
     return Functions;
@@ -2271,8 +2279,9 @@ var Service = (function () {
         params.append("_wpnonce", nonce);
         params.append("login", 'Login');
         params.append("redirect", this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-userdata');
+        var sentData = this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-login&username=' + a.username + '&password=' + a.password + '&_wpnonce=' + nonce + '&login=Login&redirect=' + this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-userdata';
         return new Promise(function (resolve) {
-            _this.http.post(_this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-login', params).map(function (res) { return res.json(); })
+            _this.http.post(sentData, params).map(function (res) { return res.json(); })
                 .subscribe(function (data) {
                 if (!data.errors) {
                     if (data.caps.wc_product_vendors_admin_vendor || data.caps.wc_product_vendors_manager_vendor) {
@@ -2361,17 +2370,6 @@ var Service = (function () {
                 .subscribe(function (data) {
                 _this.address = data;
                 resolve(_this.address);
-            });
-        });
-    };
-    Service.prototype.updateProfile = function (profile) {
-        var _this = this;
-        var params = profile;
-        return new Promise(function (resolve) {
-            _this.http.put(_this.config.setUrl('PUT', '/wp-json/wc/v2/customers/' + _this.values.customerId + '?', false), params).map(function (res) { return res.json(); })
-                .subscribe(function (data) {
-                _this.products = data;
-                resolve(_this.products);
             });
         });
     };
@@ -2472,6 +2470,28 @@ var Service = (function () {
             });
         });
     };
+    Service.prototype.addProduct = function (data) {
+        var _this = this;
+        // return new Promise(resolve => {
+        // this.http.post(this.config.setUrl('POST', '/wp-json/wc/v2/products?', false), data).map(res => res.json())
+        // .subscribe(data => {
+        // this.status = data;
+        // resolve(this.status);
+        // });
+        // });
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        // params.append("device_id", deviceId);
+        // params.append("platform", platform);
+        return new Promise(function (resolve) {
+            _this.http.post(_this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-add-new-product', params, {
+                headers: headers
+            }).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.status = data;
+                resolve(_this.status);
+            });
+        });
+    };
     Service.prototype.presentLoading = function (text) {
         this.loader = this.loadingCtrl.create({
             content: text,
@@ -2524,7 +2544,7 @@ var Service = (function () {
         //params.append("product_id", id);
         // params.append("customer_id", this.values.customerId.toString());
         //params.append("customer_id", 19);
-        var id = this.values.customerId.toString();
+        var id = 19; //this.values.customerId.toString();
         return new Promise(function (resolve) {
             _this.http.get(_this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-getAllVendorProduct&customerId=' + id).map(function (res) { return res.json(); })
                 .subscribe(function (data) {
@@ -2532,10 +2552,65 @@ var Service = (function () {
             });
         });
     };
+    Service.prototype.getUserData = function () {
+        var _this = this;
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
+        //params.append("product_id", id);
+        // params.append("customer_id", this.values.customerId.toString());
+        //params.append("customer_id", 19);
+        var id = this.values.customerId;
+        return new Promise(function (resolve) {
+            _this.http.get(_this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-getUserData&c_id=' + id).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                resolve(data);
+            });
+        });
+    };
+    Service.prototype.updateProfile = function (profile) {
+        var _this = this;
+        var params = profile;
+        return new Promise(function (resolve) {
+            _this.http.put(_this.config.setUrl('PUT', '/wp-json/wc/v2/customers/' + _this.values.customerId + '?', false), params).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.products = data;
+                resolve(_this.products);
+            });
+        });
+    };
     Service.prototype.getProducts = function () {
         var _this = this;
         return new Promise(function (resolve) {
             _this.http.get(_this.config.setUrl('GET', '/wp-json/wc/v2/products/?', false)).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.products = data;
+                resolve(_this.products);
+            });
+        });
+    };
+    Service.prototype.getProductDetail = function (id) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(_this.config.setUrl('GET', '/wp-json/wc/v2/products/' + id + '?', false)).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.products = data;
+                resolve(_this.products);
+            });
+        });
+    };
+    Service.prototype.editProduct = function (data) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(_this.config.setUrl('GET', '/wp-json/wc/v2/products/?', false)).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                _this.products = data;
+                resolve(_this.products);
+            });
+        });
+    };
+    Service.prototype.deleteProduct = function (id) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.delete(_this.config.setUrl('DELETE', '/wp-json/wc/v2/products/' + id + '?', false)).map(function (res) { return res.json(); })
                 .subscribe(function (data) {
                 _this.products = data;
                 resolve(_this.products);
@@ -2557,7 +2632,7 @@ var Service = (function () {
         var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* URLSearchParams */]();
         params.append("access_token", token);
         return new Promise(function (resolve) {
-            _this.http.post(_this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-facebook_connect', params).map(function (res) { return res.json(); })
+            _this.http.post(_this.url + '/wp-admin/admin-ajax.php?action=mstoreapp-#C72D46_connect', params).map(function (res) { return res.json(); })
                 .subscribe(function (data) {
                 console.log(data);
                 if (data.status) {
@@ -2602,15 +2677,16 @@ var Service = (function () {
         });
     };
     Service = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__config__["a" /* Config */], __WEBPACK_IMPORTED_MODULE_4__values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_native_storage__["a" /* NativeStorage */]])
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__config__["a" /* Config */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__config__["a" /* Config */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__values__["a" /* Values */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__values__["a" /* Values */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_native_storage__["a" /* NativeStorage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_native_storage__["a" /* NativeStorage */]) === "function" && _e || Object])
     ], Service);
     return Service;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=service.js.map
 
 /***/ })
 
-},[360]);
+},[361]);
 //# sourceMappingURL=main.js.map

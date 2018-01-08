@@ -45,15 +45,19 @@ export class ProductPage {
 
     handleProductResults(results){
         this.product = results;
-        this.getRelatedProducts();
-        this.getUpsellProducts();
-        this.getCrossSellProducts();
+        
 
     }
 
     getProduct(id) {
         this.nav.push('ProductPage', id);
     }
+    editProduct(id) {
+		console.log("editProduct");
+	}
+	deleteProduct(id) {
+		console.log("editProduct");
+	}
     addToCart(id) {
         if (this.product.product.type == 'variable' && this.options.length == 0) {
 

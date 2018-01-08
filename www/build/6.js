@@ -1,6 +1,6 @@
 webpackJsonp([6],{
 
-/***/ 692:
+/***/ 694:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,9 +8,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditAddressFormsModule", function() { return EditAddressFormsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__edit_address_form__ = __webpack_require__(711);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__edit_address_form__ = __webpack_require__(714);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pipes_pipe_module__ = __webpack_require__(708);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pipes_pipe_module__ = __webpack_require__(711);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -26,7 +26,7 @@ var EditAddressFormsModule = (function () {
     function EditAddressFormsModule() {
     }
     EditAddressFormsModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_2__edit_address_form__["a" /* EditAddressForm */],
             ],
@@ -47,13 +47,13 @@ var EditAddressFormsModule = (function () {
 
 /***/ }),
 
-/***/ 708:
+/***/ 711:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KeysPipeModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipe__ = __webpack_require__(709);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipe__ = __webpack_require__(712);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -66,7 +66,7 @@ var KeysPipeModule = (function () {
     function KeysPipeModule() {
     }
     KeysPipeModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [__WEBPACK_IMPORTED_MODULE_1__pipe__["a" /* KeysPipe */]],
             exports: [__WEBPACK_IMPORTED_MODULE_1__pipe__["a" /* KeysPipe */]]
         })
@@ -78,7 +78,7 @@ var KeysPipeModule = (function () {
 
 /***/ }),
 
-/***/ 709:
+/***/ 712:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102,10 +102,10 @@ var KeysPipe = (function () {
         return keys;
     };
     KeysPipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["S" /* Pipe */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
             name: 'keys'
         }),
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])()
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
     ], KeysPipe);
     return KeysPipe;
 }());
@@ -114,7 +114,7 @@ var KeysPipe = (function () {
 
 /***/ }),
 
-/***/ 711:
+/***/ 714:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -124,6 +124,7 @@ var KeysPipe = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_service__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_values__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_service_functions__ = __webpack_require__(91);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -138,10 +139,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var EditAddressForm = (function () {
-    function EditAddressForm(nav, service, params, values, formBuilder) {
+    function EditAddressForm(nav, Loading, functions, service, params, values, formBuilder) {
         var _this = this;
         this.nav = nav;
+        this.Loading = Loading;
+        this.functions = functions;
         this.service = service;
         this.values = values;
         this.formBuilder = formBuilder;
@@ -150,7 +154,7 @@ var EditAddressForm = (function () {
         this.Save = "Save";
         this.editAddress = params.data;
         this.editAddress.shipping_true = true;
-        this.service.getUserProfile()
+        this.service.getUserData()
             .then(function (results) { return _this.handleProfile(results); });
         this.myForm = formBuilder.group({
             firstName: [null, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].required],
@@ -176,12 +180,22 @@ var EditAddressForm = (function () {
             .then(function (results) { return _this.handleSaveAddress(results); });
     };
     EditAddressForm.prototype.handleProfile = function (results) {
-        console.log(results);
+        this.editAddress.first_name = results[0].first_name;
+        this.editAddress.last_name = results[0].last_name;
+        this.editAddress.email = results[0].user_email;
     };
     EditAddressForm.prototype.handleSaveAddress = function (results) {
+        var _this = this;
         this.disableSubmit = false;
         this.Save = "Saving";
-        this.nav.setRoot('Address');
+        this.loading = this.Loading.create();
+        this.loading.present();
+        setTimeout(function () {
+            _this.loading.dismiss();
+            _this.functions.showAlert("SUCCESS", "Profile Updated Successfully!");
+            _this.nav.setRoot('EditAddressForm');
+        }, 3000);
+        //this.nav.setRoot('Address');
     };
     EditAddressForm.prototype.onSubmit = function () {
         console.log('submitting form');
@@ -191,9 +205,9 @@ var EditAddressForm = (function () {
         return formField.valid || formField.pristine;
     };
     EditAddressForm = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\xampp\htdocs\ionic\boomDome\src\pages\account\edit-address-form\edit-address-form.html"*/'<ion-header no-border>\n  <ion-navbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu">\n      </ion-icon>\n    </button>\n    <ion-title text-center>{{"Edit Profile" | translate}}\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content class="edit-address-form"> \n	<form [formGroup]="myForm" ng-init="">\n	<div>\n    <ion-list>     \n      <ion-item>  \n        <ion-label floating>{{"First Name" | translate}}\n        </ion-label>\n        <ion-input required type="text" formControlName="firstName" [(ngModel)]="editAddress.first_name" name="first_name">\n        </ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>{{"Last Name"| translate}}\n        </ion-label>\n        <ion-input required type="text" formControlName="lastName" [(ngModel)]="editAddress.last_name" name="last_name">\n        </ion-input>\n      </ion-item>         \n      <ion-item>\n        <ion-label floating>{{"Email" | translate}}\n        </ion-label>\n        <ion-input required type="email" formControlName="email" [(ngModel)]="editAddress.email" name="email">\n        </ion-input>\n      </ion-item>\n      \n    </ion-list>\n  </div>\n  \n  <div class="margin">\n    <button ion-button block color="button-color" type="submit"  [disabled]="!myForm.valid" class="button button-block button-default" text-uppercase (click)="updateProfile()" >{{Save | translate}}\n    </button>\n  </div>  \n  </form>\n</ion-content>\n'/*ion-inline-end:"C:\xampp\htdocs\ionic\boomDome\src\pages\account\edit-address-form\edit-address-form.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\xampp\htdocs\ionic\boomDome\src\pages\account\edit-address-form\edit-address-form.html"*/'<ion-header no-border>\n  <ion-navbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu">\n      </ion-icon>\n    </button>\n    <ion-title text-center>{{"Edit Profile" | translate}}\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content class="edit-address-form"> \n	<form [formGroup]="myForm" ng-init="">\n	<div>\n    <ion-list>     \n      <ion-item>  \n        <ion-label floating>{{"First Name" | translate}}\n        </ion-label>\n        <ion-input required type="text" formControlName="firstName" [(ngModel)]="editAddress.first_name" name="first_name">\n        </ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>{{"Last Name"| translate}}\n        </ion-label>\n        <ion-input required type="text" formControlName="lastName" [(ngModel)]="editAddress.last_name" name="last_name">\n        </ion-input>\n      </ion-item>         \n      <ion-item>\n        <ion-label floating>{{"Email" | translate}}\n        </ion-label>\n        <ion-input required type="email" formControlName="email" [(ngModel)]="editAddress.email" name="email">\n        </ion-input>\n      </ion-item>\n      \n    </ion-list>\n  </div>\n  \n  <div class="margin">\n    <button ion-button block color="button-color" type="submit"  [disabled]="!myForm.valid" class="button button-block button-default" text-uppercase (click)="updateProfile()" >{{Save | translate}}\n    </button>\n  </div>  \n  </form>\n</ion-content>\n'/*ion-inline-end:"C:\xampp\htdocs\ionic\boomDome\src\pages\account\edit-address-form\edit-address-form.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_5__providers_service_functions__["a" /* Functions */], __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */]])
     ], EditAddressForm);
     return EditAddressForm;
 }());

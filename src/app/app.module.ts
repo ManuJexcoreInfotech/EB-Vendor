@@ -12,6 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { BrowserModule } from '@angular/platform-browser';
+import { ImageUploadModule } from 'ng2-imageupload';
 import { CartService } from '../providers/service/cart-service';
 import { WishlistService } from '../providers/service/wishlist-service';
 import { CategoryService } from '../providers/service/category-service';
@@ -26,8 +27,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { Facebook } from '@ionic-native/facebook';
-import { GooglePlus } from '@ionic-native/google-plus';
+// import { Facebook } from '@ionic-native/facebook';
+// import { GooglePlus } from '@ionic-native/google-plus';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -44,6 +45,7 @@ export function createTranslateLoader(http: HttpClient) {
 
   imports: [
     BrowserModule,
+	ImageUploadModule,
     HttpClientModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
@@ -75,8 +77,8 @@ export function createTranslateLoader(http: HttpClient) {
   SearchService,
   Service,
   Values,
-  Facebook,
-  GooglePlus,
+  // Facebook,
+  // GooglePlus,
   StatusBar,
   SplashScreen,
   InAppBrowser,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, PopoverController, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, PopoverController, IonicPage,AlertController } from 'ionic-angular';
 import { CategoryService } from '../../providers/service/category-service';
 import { Service } from '../../providers/service/service';
 import { Values } from '../../providers/service/values';
@@ -44,7 +44,7 @@ export class ProductsPage {
     selectedFilter: any = {};
     filterType: any;
 
-    constructor(public nav: NavController, public popoverCtrl: PopoverController, public serv: Service,public service: CategoryService, params: NavParams, public values: Values, public functions: Functions) {
+    constructor(public nav: NavController, public popoverCtrl: PopoverController, public serv: Service,public service: CategoryService, params: NavParams, public values: Values, public functions: Functions,private alert: AlertController) {
         this.data = {};
         this.termsOption = {};
         this.filter = {};
@@ -319,4 +319,32 @@ export class ProductsPage {
         }
       
     }
+	editProduct(id){
+		this.values.productDiD = id;
+		this.nav.push('EditProductP', id);
+	}
+	deleteProduct(id){
+		let alert = this.alert.create({
+		title: 'Confirm Delete',
+		message: 'Do you want to delete this product?',
+		buttons: [
+		  {
+			text: 'No',
+			role: 'cancel',
+			handler: () => {
+			  console.log('Cancel clicked');
+			}
+		  },
+		  {
+			text: 'Yes',
+			handler: () => {
+				this.serv.deleteProduct(id)
+					.then((results) => this.nav.setRoot('ProductsPage'));
+				console.log('Buy clicked');
+			}
+		  }
+		]
+	  });
+	  alert.present();
+	}
 }

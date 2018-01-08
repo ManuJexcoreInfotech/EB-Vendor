@@ -82,7 +82,7 @@ export class AccountLogin {
     }
 
 
-    /* facebookLogin() {
+    /* #C72D46Login() {
      
         this.fb.login(['email']).then((response) => {
             this.fres = response;

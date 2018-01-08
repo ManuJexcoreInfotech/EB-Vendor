@@ -1,6 +1,6 @@
 webpackJsonp([8],{
 
-/***/ 706:
+/***/ 709:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductsPageModule", function() { return ProductsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__products__ = __webpack_require__(725);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__products__ = __webpack_require__(729);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -24,7 +24,7 @@ var ProductsPageModule = (function () {
     function ProductsPageModule() {
     }
     ProductsPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_2__products__["a" /* ProductsPage */],
             ],
@@ -44,14 +44,14 @@ var ProductsPageModule = (function () {
 
 /***/ }),
 
-/***/ 725:
+/***/ 729:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_category_service__ = __webpack_require__(358);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_category_service__ = __webpack_require__(359);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_values__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_service_functions__ = __webpack_require__(91);
@@ -71,7 +71,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ProductsPage = (function () {
-    function ProductsPage(nav, popoverCtrl, serv, service, params, values, functions) {
+    function ProductsPage(nav, popoverCtrl, serv, service, params, values, functions, alert) {
         var _this = this;
         this.nav = nav;
         this.popoverCtrl = popoverCtrl;
@@ -79,6 +79,7 @@ var ProductsPage = (function () {
         this.service = service;
         this.values = values;
         this.functions = functions;
+        this.alert = alert;
         this.has_more_items = true;
         this.listview = false;
         this.noProducts = false;
@@ -331,11 +332,40 @@ var ProductsPage = (function () {
                 .then(function (results) { return _this.attributeTerms[id] = results; });
         }
     };
+    ProductsPage.prototype.editProduct = function (id) {
+        this.values.productDiD = id;
+        this.nav.push('EditProductP', id);
+    };
+    ProductsPage.prototype.deleteProduct = function (id) {
+        var _this = this;
+        var alert = this.alert.create({
+            title: 'Confirm Delete',
+            message: 'Do you want to delete this product?',
+            buttons: [
+                {
+                    text: 'No',
+                    role: 'cancel',
+                    handler: function () {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Yes',
+                    handler: function () {
+                        _this.serv.deleteProduct(id)
+                            .then(function (results) { return _this.nav.setRoot('ProductsPage'); });
+                        console.log('Buy clicked');
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
     ProductsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-products',template:/*ion-inline-start:"C:\xampp\htdocs\ionic\boomDome\src\pages\products\products.html"*/'<ion-header no-border class="products-header">\n  <ion-navbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu">\n      </ion-icon>\n    </button>\n    <ion-title text-center>{{"Product List" | translate}}\n    </ion-title>\n	<ion-buttons end>\n      <button ion-button icon-only light class="has-icon icon-only has-badge" style="min-width: 6vw;">   \n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content class="products"> \n\n\n    <ion-spinner *ngIf="!products" name="crescent">\n    </ion-spinner>\n\n    <div *ngIf="products" class="products-listing">\n\n\n    <div *ngIf="!products.length" class="no-products">\n    <h2>{{"No products found!" | translate}}</h2>\n    </div>\n\n      <div *ngIf="products.length">\n        <div *ngIf="values.listview">\n            <div class="item-list" *ngFor="let item of products">\n              <ion-item class="left-padding" no-lines>\n                  <ion-thumbnail item-left class="stock-list">\n                    <img tappable (click)="getProduct(item.id)" src="{{item.images[0].src}}">\n                    <button class="no-stock-button" ion-button *ngIf="!item.in_stock">{{"No Stock" | translate}}\n                    </button>             \n                  </ion-thumbnail> \n\n                  <div class="product-name-top">                                 \n                  <div class="product-label">\n                  <div tappable (click)="getProduct(item.id)" class="max-lines">\n                      <h2 *ngIf="item.title">{{item.title}}\n                      </h2>\n                      <h2 *ngIf="item.name">{{item.name}}\n                      </h2>\n                  </div>\n                  </div>\n                  </div> \n\n                  <div>\n                    <span class="price-delete" *ngIf="item.sale_price">\n                    <del>{{1*item.regular_price | currency:values.currency:true:\'1.2-2\'}}\n                    </del>\n                    </span>\n                    <span class="price-regular" *ngIf="!item.sale_price">{{1*item.price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n                    <span class="price-regular" *ngIf="item.sale_price">{{1*item.sale_price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n\n                  </div>\n                 \n              </ion-item>\n            </div>\n        </div>\n\n\n        <div *ngIf="!values.listview">\n          <div class="grid">\n            <ion-row class="row unlimited-items">\n              <ion-col class="col" *ngFor="let item of products">\n                <ion-card>\n                  <ion-card-content class="stock">\n\n                      <img tappable src="{{item.images[0].src}}" (click)="getProduct(item.id)">\n                      <button ion-button color="danger" *ngIf="!item.in_stock">{{"No Stock" | translate}}\n                      </button>\n\n                 \n\n                  \n                  </ion-card-content>\n\n                  <div tappable (click)="getProduct(item.id)" class="card-name">\n                  <ion-label *ngIf="item.title">{{item.title}}\n                  </ion-label>\n                  <ion-label *ngIf="item.name">{{item.name}}\n                  </ion-label>\n                  </div>\n                  <ion-label>\n                    <span class="price-delete" *ngIf="item.sale_price">\n                    <del>{{1*item.regular_price | currency:values.currency:true:\'1.2-2\'}}\n                    </del>\n                    </span>\n                    <span class="price-regular" *ngIf="!item.sale_price">{{1*item.price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n                    <span class="price-regular" *ngIf="item.sale_price">{{1*item.sale_price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n\n                  </ion-label>\n                </ion-card>\n              </ion-col>\n            </ion-row>\n          </div>\n        </div>\n      </div>\n      <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="has_more_items">\n			<ion-infinite-scroll-content\n			 loadingSpinner="crescent"\n			 loadingText={{values.lan.GettingMoreElements}}>\n			</ion-infinite-scroll-content>\n      </ion-infinite-scroll>\n    </div>\n  \n</ion-content>\n'/*ion-inline-end:"C:\xampp\htdocs\ionic\boomDome\src\pages\products\products.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-products',template:/*ion-inline-start:"C:\xampp\htdocs\ionic\boomDome\src\pages\products\products.html"*/'<ion-header no-border class="products-header">\n  <ion-navbar color="header">\n    <button ion-button menuToggle>\n      <ion-icon name="menu">\n      </ion-icon>\n    </button>\n    <ion-title text-center>{{"Product List" | translate}}\n    </ion-title>\n	<ion-buttons end>\n      <button ion-button icon-only light class="has-icon icon-only has-badge" style="min-width: 6vw;">   \n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content class="products"> \n\n\n    <ion-spinner *ngIf="!products" name="crescent">\n    </ion-spinner>\n\n    <div *ngIf="products" class="products-listing">\n\n\n    <div *ngIf="!products.length" class="no-products">\n    <h2>{{"No products found!" | translate}}</h2>\n    </div>\n\n      <div *ngIf="products.length">\n        <div *ngIf="values.listview">\n            <div class="item-list" *ngFor="let item of products">\n              <ion-item class="left-padding" no-lines>\n                  <ion-thumbnail item-left class="stock-list">\n                    <img tappable (click)="getProduct(item.id)" src="{{item.images[0].src}}">\n                    <button class="no-stock-button" ion-button *ngIf="!item.in_stock">{{"No Stock" | translate}}\n                    </button>             \n                  </ion-thumbnail> \n\n                  <div class="product-name-top">                                 \n                  <div class="product-label">\n                  <div tappable (click)="getProduct(item.id)" class="max-lines">\n                      <h2 *ngIf="item.title">{{item.id}}-{{item.title}} \n                      </h2>\n                      <h2 *ngIf="item.name">{{item.name}}\n                      </h2>\n                  </div>\n                  </div>\n                  </div> \n\n                  <div>\n                    <span class="price-delete" *ngIf="item.sale_price">\n                    <del>{{1*item.regular_price | currency:values.currency:true:\'1.2-2\'}}\n                    </del>\n                    </span>\n                    <span class="price-regular" *ngIf="!item.sale_price">{{1*item.price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n                    <span class="price-regular" *ngIf="item.sale_price">{{1*item.sale_price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n\n                  </div>\n                 \n              </ion-item>\n            </div>\n        </div>\n\n\n        <div *ngIf="!values.listview">\n          <div class="grid">\n            <ion-row class="row unlimited-items">\n              <ion-col class="col" *ngFor="let item of products">\n                <ion-card>\n                  <ion-card-content class="stock">\n\n                      <img tappable src="{{item.images[0].src}}" (click)="getProduct(item.id)">\n                      <button ion-button color="danger" *ngIf="!item.in_stock">{{"No Stock" | translate}}\n                      </button>\n\n                 \n\n                  \n                  </ion-card-content>\n\n                  <div tappable (click)="getProduct(item.id)" class="card-name">\n                  <ion-label *ngIf="item.title">{{item.id}}-{{item.title}}\n                  </ion-label> \n                  <ion-label *ngIf="item.name">{{item.name}}\n                  </ion-label>\n                  </div>\n                  <ion-label>\n                    <span class="price-delete" *ngIf="item.sale_price">\n                    <del>{{1*item.regular_price | currency:values.currency:true:\'1.2-2\'}}\n                    </del>\n                    </span>\n                    <span class="price-regular" *ngIf="!item.sale_price">{{1*item.price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n                    <span class="price-regular" *ngIf="item.sale_price">{{1*item.sale_price | currency:values.currency:true:\'1.2-2\'}}\n                    </span>\n\n                  </ion-label>\n				  <ion-label>\n                    <ion-row>\n						<ion-col width-50 class="col1">\n							<button ion-button icon-only round (click)="editProduct(item.id)" color="secondary" style="height:2.8em">\n								<ion-icon name="create-outline"></ion-icon>\n							</button>\n						</ion-col>\n						<ion-col width-50>\n							<button ion-button icon-only round  (click)="deleteProduct(item.id)" color="danger" style="height:2.8em">\n								<ion-icon name="trash-outline"></ion-icon>\n							</button>\n						</ion-col>\n					</ion-row>\n                  </ion-label>\n                </ion-card>\n              </ion-col>\n            </ion-row>\n          </div>\n        </div>\n      </div>\n     \n    </div>\n  \n</ion-content>\n'/*ion-inline-end:"C:\xampp\htdocs\ionic\boomDome\src\pages\products\products.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_2__providers_service_category_service__["a" /* CategoryService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_5__providers_service_functions__["a" /* Functions */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* Service */], __WEBPACK_IMPORTED_MODULE_2__providers_service_category_service__["a" /* CategoryService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__providers_service_values__["a" /* Values */], __WEBPACK_IMPORTED_MODULE_5__providers_service_functions__["a" /* Functions */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], ProductsPage);
     return ProductsPage;
 }());
